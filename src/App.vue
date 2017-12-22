@@ -1,6 +1,5 @@
 <template>
-  <div id="app">
-    <img src="./assets/fb-art.png">
+
     <!-- <router-view/> -->
     <!-- <dts v-if="$parent.flag" :flag='$parent.flag' :prows='$parent.rows' :pcolumns='$parent.columns'></dts> -->
     <div v-if="$parent.flag">
@@ -28,5 +27,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 </style>
