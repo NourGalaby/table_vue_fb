@@ -3,38 +3,57 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="/static/index.css">
+    <link rel="stylesheet" href="static/index.css">
     <title>my-project</title>
   </head>
   <body>
     <div class="topnav" id="nav">
-  
-      <input placeholder="Search" type="text" id="search">
+      <input placeholder="Token" type="text" id="token" v-on:keypress="enter">
+      <input placeholder="Search" type="text" id="search" v-on:keypress="enter">
       <button v-on:click="search" id="search-btn">Search</button>
     </div>
-  <p></p>
-  <p></p>
-  <p></p>
-
-  <p> An access token will serve as your identity when you use the tool. 
-      You will need an access token you can get it from 
+    <button class="accordion">Where to get a token ?</button>
+    <div class="panel">
+      <br><br>
+      <p> An access token will serve as your identity when you use the tool. 
+          You will need an access token you can get it from 
         <a href="https://developers.facebook.com/tools/explorer/">here</a>  </p> 
-        <p> Copy paste the token here,  </p>
-        To Magdy INSERT HERE token.jpg From /src/assets !!! 
-    <p> Insert your token here </p>
-
-  <div class="topnav" id="nav">
-
-
-    <input placeholder="Token" type="text" id="token">
-  </div>
-
-    <b></b>
-  <b></b>
+        <p> Copy paste the token here, and insert it above </p>
+        <img src="./static/token.JPG">
+      <!-- <p> Insert your token here </p> -->
+    
+      <!-- <div class="topnav" id="nav">
+    
+    
+        <input placeholder="Token" type="text" id="token">
+      </div> -->
+    
+      <!-- <p></p>
+      <p></p> -->
+    </div>
     <div id="app"></div>
-    <input placeholder="Token" type="text" id="token">
     
     <!-- <div id="app1"></div> -->
     <!-- built files will be auto injected -->
+    <script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function() {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("active");
+
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+    </script>
   </body>
 </html>
