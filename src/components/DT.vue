@@ -91,7 +91,7 @@ export default {
       ]
     }
   },
-  created() {
+  created () {
     // this.$http.get('http://localhost:5000/sample').then((dataSample) => {
     //   // console.log(dataSample);
     //   let body = JSON.parse(dataSample.body);
@@ -124,9 +124,9 @@ export default {
     //             rows[id] = {'id': id};
     //           }
     //           if (colName === 'picture') {
-    //             rows[id][colName] = '<img src ="' + val + '" />';  
+    //             rows[id][colName] = '<img src ="' + val + '" />';
     //           } else if (colName === 'id') {
-    //             rows[id][colName] = '<a href ="' + val + '" />' + val;  
+    //             rows[id][colName] = '<a href ="' + val + '" />' + val;
     //           } else {
     //             rows[id][colName] = val;
     //           }
@@ -145,28 +145,10 @@ export default {
   },
   watch: {
     flag: function () {
-      console.log('flag');
-      this.rows = this.prows;
-      this.columns = this.pcolumns;
+      console.log('flag')
+      this.rows = this.prows
+      this.columns = this.pcolumns
     }
   }
-};
+}
 </script>
-
-
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
