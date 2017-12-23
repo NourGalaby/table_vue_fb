@@ -27,9 +27,14 @@ const v1 = new Vue({
     flag: true,
     rows: [],
     columns: [],
-    q: '',
-    op: '>',
-    f: 'fans_count'
+    q1: '',
+    op1: '>',
+    q2: '',
+    op2: '>',
+    q3: '',
+    op3: '>',
+    q4: '',
+    op4: '>'
   },
   template: '<App/>',
   components: { App },
@@ -44,8 +49,21 @@ const v1 = new Vue({
         '=': function (x, y) { return x == y }
       }
       return this.rows.filter((row) => {
-        if (this.q) {
-          return operatorFromString[this.op](row[this.f], this.q)  
+        let qd = new Date(this.q4)
+        qd.setHours(0, 0, 0, 0)
+        qd.setTime(qd.getTime() + (qd.getTimezoneOffset() * 60 * 1000))
+        console.log(qd.getTime())
+        console.log(qd)
+        let d = new Date(row['last_post_date'])
+        d.setHours(0, 0, 0, 0)
+        d.setTime(d.getTime() + (d.getTimezoneOffset() * 60 * 1000))
+        console.log(d.getTime())
+        console.log(d)
+        if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4) {
+          return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
+          (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
+          ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) &&
+          (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true)
         }
         return true
       })

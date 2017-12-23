@@ -1,0 +1,20 @@
+<!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><link rel=stylesheet href=static/index.css><link rel=icon href=static/fb-art.png><title>Facebook Statistics</title><link href=/static/css/app.2879a4a5fbf7a5a138a8da3ccea56da5.css rel=stylesheet></head><body onload=prep();><div class=topnav id=nav><input placeholder=Token type=text id=token v-on:keypress=enter> <input placeholder=Search type=text id=search v-on:keypress=enter> <button v-on:click=search id=search-btn>Search</button></div><button class=accordion>Where to get a token ?</button><div class=panel><br><br><p>An access token will serve as your identity when you use the tool. You will need an access token you can get it from <a href=https://developers.facebook.com/tools/explorer/ >here</a></p><p>Copy paste the token here, and insert it above</p><img src=static/token.JPG></div><div id=app></div><script>var prep = function() {
+      var acc = document.getElementsByClassName("accordion");
+      var i;
+
+      for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+              /* Toggle between adding and removing the "active" class,
+              to highlight the button that controls the panel */
+              this.classList.toggle("active");
+
+              /* Toggle between hiding and showing the active panel */
+              var panel = this.nextElementSibling;
+              if (panel.style.display === "block") {
+                  panel.style.display = "none";
+              } else {
+                  panel.style.display = "block";
+              }
+          });
+      }
+    }</script><script type=text/javascript src=/static/js/manifest.99f3c5ef4321cf2210ba.js></script><script type=text/javascript src=/static/js/vendor.9e3950b1a655eefc8c2f.js></script><script type=text/javascript src=/static/js/app.751d99f378d7f9d61255.js></script></body></html>
