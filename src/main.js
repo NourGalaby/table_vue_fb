@@ -7,6 +7,10 @@ import App from './App'
 // import Vue from 'vue';
 import VueGoodTable from 'vue-good-table'
 import VueResource from 'vue-resource'
+import BootstrapVue from 'bootstrap-vue'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import DT from '@/components/DT'
 
@@ -14,6 +18,7 @@ Vue.component('dts', DT)
 
 Vue.use(VueGoodTable)
 Vue.use(VueResource)
+Vue.use(BootstrapVue)
 
 Vue.config.delimiters = ['${', '}']
 

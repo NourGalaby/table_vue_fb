@@ -1,6 +1,19 @@
+
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+
 body {
   background-color: #efefff;
+  /* padding: 1%; */
+  font-size: 16px;
+  line-height: 1.6;
+  /* font-family: "Open Sans", Helvetica, Arial, sans-serif; */
+  font-family: "Raleway", sans-serif;
 }
+
+/* .sub-body {
+  margin: auto;
+  width: 75%;
+} */
 
 /* Add a black background color to the top navigation bar */
 .topnav {
@@ -86,8 +99,26 @@ body {
 }
 
 /* Style the accordion panel. Note: hidden by default */
-.panel {
+.infopanel {
   padding: 0 18px;
   background-color: #ddd;
   display: none;
+}
+
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  display:block;
+}
+
+.img-thumbnail {
+    border: 1px solid #ddd; /* Gray border */
+    border-radius: 4px;  /* Rounded border */
+    padding: 5px; /* Some padding */
+    width: 650px; /* Set a small width */
+}
+
+/* Add a hover effect (blue shadow) */
+.img-thumbnail:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
 }
