@@ -6,14 +6,14 @@ import pickle
 import pandas as pd
 #from scrapper  import call_search
 app = Flask(__name__)
-#Load data from filefffffffffffrfffffffffffffffffffffffff4gfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgggggfgfffggggggggggggfggggfgfgggfgggggggggggfggfggggfggggggggggfggggg
+#Load data from 
 CORS(app)
 Vue(app)
 
-data= pickle.load(file=open( "temp_scrapped.pkl",mode='rb'))
+data= pickle.load(file=open( "travel_search_results.pkl",mode='rb'))
 
 #take a sample of the date ( 50 )
-data=data[:50]
+data=data[:100]
 
 
 @app.route('/')
