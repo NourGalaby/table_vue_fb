@@ -97,13 +97,13 @@ const v2 = new Vue({
             if (colName === 'picture') {
               columns.push({label: 'Picture', field: colName, html: true})
             } else if (colName === 'US percent') {
-              columns.push({label: 'US Percent', field: colName, filterable: true, type: 'percentage'})
+              columns.push({label: 'US Percent', field: colName, /* filterable: true, */ type: 'percentage'})
             } else if (colName === 'fans_count') {
-              columns.push({label: 'Fans Count', field: colName, filterable: true, type: 'number'})
+              columns.push({label: 'Fans Count', field: colName, /* filterable: true, */ type: 'number'})
             } else if (colName === 'US_Total') {
-              columns.push({label: 'US Total Fans', field: colName, filterable: true, type: 'number'})
+              columns.push({label: 'US Total Fans', field: colName, /* filterable: true, */ type: 'number'})
             } else if (colName === 'last_post_date') {
-              columns.push({label: 'Last Post Date', field: colName, filterable: true, type: 'date', inputFormat: 'YYYY-MM-DD', outputFormat: 'MMM Do YY'})
+              columns.push({label: 'Last Post Date', field: colName, /* filterable: true, */ type: 'date', inputFormat: 'YYYY-MM-DD', outputFormat: 'MMM Do YY'})
             } else if (colName === 'id') {
               columns.push({label: 'Page Link', field: colName, html: true})
             } else if (colName === 'name') {
@@ -154,13 +154,13 @@ const v2 = new Vue({
           if (colName === 'picture') {
             columns.push({label: 'Picture', field: colName, html: true})
           } else if (colName === 'US percent') {
-            columns.push({label: 'US Percent', field: colName, filterable: true, type: 'percentage'})
+            columns.push({label: 'US Percent', field: colName, /* filterable: true, */ type: 'percentage'})
           } else if (colName === 'fans_count') {
-            columns.push({label: 'Fans Count', field: colName, filterable: true, type: 'number'})
+            columns.push({label: 'Fans Count', field: colName, /* filterable: true, */ type: 'number'})
           } else if (colName === 'US_Total') {
-            columns.push({label: 'US Total Fans', field: colName, filterable: true, type: 'number'})
+            columns.push({label: 'US Total Fans', field: colName, /* filterable: true, */ type: 'number'})
           } else if (colName === 'last_post_date') {
-            columns.push({label: 'Last Post Date', field: colName, filterable: true, type: 'date', inputFormat: 'YYYY-MM-DD', outputFormat: 'MMM Do YY'})
+            columns.push({label: 'Last Post Date', field: colName, /* filterable: true, */ type: 'date', inputFormat: 'YYYY-MM-DD', outputFormat: 'MMM Do YY'})
           } else if (colName === 'id') {
             columns.push({label: 'Page Link', field: colName, html: true})
           } else if (colName === 'name') {
