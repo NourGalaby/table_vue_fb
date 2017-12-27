@@ -141,7 +141,7 @@ export default {
   .panel {
     padding: 0 6px;
     background-color: #ddd;
-    display: none;
+    display: block;
     /* margin: auto;
     width: 75%; */
   }
