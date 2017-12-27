@@ -10,8 +10,8 @@ import VueResource from 'vue-resource'
 // import BootstrapVue from 'bootstrap-vue'
 // import json2csv from 'json-2-csv'
 
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
+//import 'bootstrap/dist/css/bootstrap.css'
+//import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import DT from '@/components/DT'
 
