@@ -4,9 +4,9 @@
     <br> -->
     <nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
       <div>
-        <button class="accordion2 w3-bar-item w3-button w3-padding w3-blue" v-on:click="tggleacc">Advanced Filters</button>
-        <div class="panel w3-khaki">
-          <div class="filterbar w3-khaki" id="filter1">
+        <button class="accordion2 w3-bar-item w3-button w3-padding w3-black" v-on:click="tggleacc">Advanced Filters</button>
+        <div class="panel w3-grey">
+          <div class="filterbar w3-grey" id="filter1">
             <!-- <label for="">Filter by : </label> -->
             <!-- <select v-model="$parent.f"> -->
               <label for="operator1">Fans Count</label>
@@ -21,7 +21,7 @@
             </select>
             <input type="number" v-model="$parent.q1" placeholder="A positive number">
           </div>
-          <div class="filterbar w3-khaki" id="filter2">
+          <div class="filterbar w3-grey" id="filter2">
             <label for="operator2">US Total Fans</label>
             <select v-model="$parent.op2" name="operator2">
               <option value=">">greater than</option>
@@ -30,7 +30,7 @@
             </select>
             <input type="number" v-model="$parent.q2" placeholder="A positive number">
           </div>
-          <div class="filterbar w3-khaki" id="filter3">
+          <div class="filterbar w3-grey" id="filter3">
             <label for="operator3">US Percent</label>
             <select v-model="$parent.op3" name="operator3">
               <option value=">">greater than</option>
@@ -39,7 +39,7 @@
             </select>
             <input type="text" v-model="$parent.q3" placeholder="e.g. 50.5">
           </div>
-          <div class="filterbar w3-khaki" id="filter4">
+          <div class="filterbar w3-grey" id="filter4">
             <label for="operator4">Last Post Date</label>
             <select v-model="$parent.op4" name="operator4">
               <option value=">">greater than</option>
@@ -57,9 +57,10 @@
     <!-- styleClass="edited-table" -->
     <!-- responsive=false -->
 <div class="sub-body w3-main" style="margin-left:300px;margin-top:43px;padding-left:20px;">
-    <div v-if="$parent.flag" class="table ">
+    <div v-if="$parent.flag" class="w3-grey" >
       <vue-good-table
         title=""
+        styleClass="table table-bordered w3-grey"
         
         :columns="$parent.columns"
         :rows="$parent.customFilter"
@@ -111,7 +112,9 @@ export default {
     font-size: small;
     text-align: center;
   }
-
+  .row{
+    font-size: small;
+  }
   .edited-table {
     overflow: hidden;
   }
