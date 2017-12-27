@@ -13,8 +13,8 @@
     <link rel="icon" href="static/fb-art.png">
     <title>Facebook Statistics</title>
   </head>
-  <body onload="prep();" class="w3-light-grey">
-    <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
+  <body onload="prep();" >
+    <div class="w3-bar w3-top w3-dark-grey w3-large" style="z-index:4">
       <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
       <span class="w3-bar-item w3-right">Facebook Statistics</span>
     </div>
@@ -59,15 +59,15 @@
       </header> -->
       <div class="w3-panel">
         <div class="w3-row-padding" style="margin:0 -16px">
-          <div class="topnav w3-grey" id="nav">
+          <div class="topnav w3-light-grey" id="nav">
             <div>
             <input placeholder="Search" type="text" id="search" v-on:keypress="enter" >
-            <button v-on:click="search" id="search-btn" class="btn w3-black">Search</button>
+            <button v-on:click="search" id="search-btn" class="btn w3-dark-grey">Search</button>
           </div>
             <div ><input placeholder="Token" type="text" id="token" v-on:keypress="enter" ></div>
           </div>
-          <button class="accordion w3-bar-item w3-button w3-padding w3-black">Where to get a token ?</button>
-          <div class="infopanel w3-grey">
+          <button class="accordion w3-bar-item w3-button w3-padding w3-dark-grey">Where to get a token ?</button>
+          <div class="infopanel w3-light-grey">
             <p> An access token will serve as your identity when you use the tool. 
                 You will need an access token you can get it from 
               <a href="https://developers.facebook.com/tools/explorer/">here</a> 
