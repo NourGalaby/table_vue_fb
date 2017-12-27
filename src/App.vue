@@ -4,7 +4,8 @@
     <br> -->
     <nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
       <div>
-        <button class="accordion2 w3-bar-item w3-button w3-padding w3-black" v-on:click="tggleacc">Advanced Filters</button>
+        <!-- v-on:click="tggleacc" -->
+        <button class="accordion2 w3-bar-item w3-button w3-padding w3-black" >Advanced Filters</button>
         <div class="panel w3-grey">
           <div class="filterbar w3-grey" id="filter1">
             <!-- <label for="">Filter by : </label> -->
@@ -78,10 +79,10 @@ export default {
     tggleacc: function (event) {
       var panel = event.target.nextElementSibling;
       // console.log(panel.style.display);
-      if (panel.style.display === "block") {
-          panel.style.display = "none";
+      if (panel.style.display === 'block') {
+        panel.style.display = 'none'
       } else {
-          panel.style.display = "block";
+        panel.style.display = 'block'
       }
     }
   }
