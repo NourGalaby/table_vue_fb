@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <img src="./assets/fb-art.png">
     <br> -->
-    <nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+    <nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
       <div>
         <!-- v-on:click="tggleacc" -->
         <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" >Advanced Filters</button>
@@ -50,6 +50,9 @@
             <input type="date" v-model="$parent.q4" placeholder="Date">
           </div>
         </div>
+        <div class="btn-right">
+          <button  id="csv-btn" class="btn w3-dark-grey" v-on:click="csv">Save as CSV</button>
+        </div>
       </div>
     </nav>
     <!-- <router-view/> -->
@@ -57,7 +60,9 @@
     <!-- <b-alert show variant="primary">Primary Alert</b-alert> -->
     <!-- styleClass="edited-table" -->
     <!-- responsive=false -->
+    
 <div class="sub-body w3-main" style="margin-left:300px;margin-top:43px;padding-left:20px;">
+  
     <div v-if="$parent.flag" class="w3-light-grey" >
       <vue-good-table
         title=""
@@ -84,7 +89,20 @@ export default {
       } else {
         panel.style.display = 'block'
       }
-    }
+    },
+  csv: function () {
+    const converter = require('json-2-csv')
+    // console.log(this)
+    // console.log(this.$children)
+    // console.log(this.$parent.customFilter)
+    converter.json2csv(this.$parent.customFilter, (err, converted) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(converted)
+      }
+    })
+  }
   }
 }
 </script>
@@ -165,5 +183,12 @@ export default {
   .filterbar label {
     width: 100%;
     margin-top: 16px;
+  }
+  .btn-right {
+    float: right;
+    padding: 6px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    /* display: inline-block; */
   }
 </style>

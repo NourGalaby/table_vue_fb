@@ -7,18 +7,22 @@ import App from './App'
 // import Vue from 'vue';
 import VueGoodTable from 'vue-good-table'
 import VueResource from 'vue-resource'
-import BootstrapVue from 'bootstrap-vue'
+// import BootstrapVue from 'bootstrap-vue'
+// import json2csv from 'json-2-csv'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import DT from '@/components/DT'
 
+const conv = require('json-2-csv')
+
 Vue.component('dts', DT)
 
 Vue.use(VueGoodTable)
 Vue.use(VueResource)
-Vue.use(BootstrapVue)
+// Vue.use(BootstrapVue)
+// Vue.use(json2csv)
 
 Vue.config.delimiters = ['${', '}']
 
@@ -39,7 +43,8 @@ const v1 = new Vue({
     q3: '',
     op3: '>',
     q4: '',
-    op4: '>'
+    op4: '>',
+    converter: conv
   },
   template: '<App/>',
   components: { App },
