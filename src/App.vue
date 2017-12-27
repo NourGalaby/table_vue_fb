@@ -61,7 +61,7 @@
     <div v-if="$parent.flag" class="w3-grey" >
       <vue-good-table
         title=""
-        styleClass="table table-bordered w3-grey"
+        styleClass="table table-bordered w3-light-grey"
         
         :columns="$parent.columns"
         :rows="$parent.customFilter"
@@ -77,7 +77,7 @@ export default {
   name: 'app',
   methods: {
     tggleacc: function (event) {
-      var panel = event.target.nextElementSibling;
+      var panel = event.target.nextElementSibling
       // console.log(panel.style.display);
       if (panel.style.display === 'block') {
         panel.style.display = 'none'
