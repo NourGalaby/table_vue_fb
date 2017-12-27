@@ -57,6 +57,7 @@ body {
   /* margin-left: 16px; */
   padding: 14px 16px;
   font-size: 13px;
+  width: 75%;
 }
 .topnav #token {
   float: none;
@@ -79,6 +80,7 @@ body {
   /* margin-right: 16px; */
   padding: 14px 16px;
   font-size: 13px;
+  width: 15%;
 }
 .btn {
   /* background-color: #0E100E; Green */
