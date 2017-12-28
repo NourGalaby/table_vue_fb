@@ -70,10 +70,15 @@ const v1 = new Vue({
         d.setTime(d.getTime() + (d.getTimezoneOffset() * 60 * 1000))
         // console.log(d.getTime())
         // console.log(d)
+        // console.log(row['US percent'])
+        // console.log(row['US_fans_percent'])
+        // console.log(row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined)
+        // console.log(parseFloat(row['US_fans_percent']))
+        // console.log(this.q3 / 100)
         if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4) {
           return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
           (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
-          ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) &&
+          ((row['US percent'] !== null && row['US percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : ((row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US_fans_percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : (!((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0))))) &&
           (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true)
         }
         return true
@@ -92,7 +97,7 @@ const v1 = new Vue({
         if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4) {
           return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
           (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
-          ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) &&
+          ((row['US percent'] !== null && row['US percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : ((row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US_fans_percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : (!((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0))))) &&
           (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true)
         }
         return true
@@ -134,6 +139,8 @@ const v2 = new Vue({
               columns.push({label: 'Page Link', field: colName, html: true})
             } else if (colName === 'name') {
               columns.push({label: 'Page Name', field: colName, filterable: true})
+            } else if (colName.toLowerCase().indexOf('percent') > -1) {
+              columns.push({label: colName, field: colName, /* filterable: true, */ type: 'percentage'})
             } else {
               columns.push({label: colName, field: colName, filterable: true})
             }
@@ -196,6 +203,8 @@ const v2 = new Vue({
             columns.push({label: 'Page Link', field: colName, html: true})
           } else if (colName === 'name') {
             columns.push({label: 'Page Name', field: colName, filterable: true})
+          } else if (colName.toLowerCase().indexOf('percent') > -1) {
+            columns.push({label: colName, field: colName, /* filterable: true, */ type: 'percentage'})
           } else {
             columns.push({label: colName, field: colName, filterable: true})
           }
