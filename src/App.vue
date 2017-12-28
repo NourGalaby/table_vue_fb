@@ -95,11 +95,24 @@ export default {
     // console.log(this)
     // console.log(this.$children)
     // console.log(this.$parent.customFilter)
-    converter.json2csv(this.$parent.customFilter, (err, converted) => {
+    converter.json2csv(this.$parent.rows2, (err, converted) => {
       if (err) {
         console.log(err)
       } else {
         console.log(converted)
+        let csvContent = 'data:text/csv;charset=utf-8,'
+        csvContent += converted
+        // converted.forEach(function(rowArray){
+        //   let row = rowArray.join(",")
+        //   csvContent += row + "\r\n" // add carriage return
+        // });
+        var encodedUri = encodeURI(csvContent)
+        var link = document.createElement("a")
+        link.setAttribute("href", encodedUri)
+        link.setAttribute("download", "statistics.csv")
+        document.body.appendChild(link) // Required for FF
+
+        link.click()
       }
     })
   }

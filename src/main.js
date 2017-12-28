@@ -10,8 +10,8 @@ import VueResource from 'vue-resource'
 // import BootstrapVue from 'bootstrap-vue'
 // import json2csv from 'json-2-csv'
 
-//import 'bootstrap/dist/css/bootstrap.css'
-//import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 import DT from '@/components/DT'
 
@@ -35,6 +35,7 @@ const v1 = new Vue({
   data: {
     flag: true,
     rows: [],
+    rows2: [],
     columns: [],
     q1: '',
     op1: '>',
@@ -58,17 +59,36 @@ const v1 = new Vue({
         '<': function (x, y) { return x < y },
         '=': function (x, y) { return x == y }
       }
+      this.rows2.filter((row) => {
+        let qd = new Date(this.q4)
+        qd.setHours(0, 0, 0, 0)
+        qd.setTime(qd.getTime() + (qd.getTimezoneOffset() * 60 * 1000))
+        // console.log(qd.getTime())
+        // console.log(qd)
+        let d = new Date(row['last_post_date'])
+        d.setHours(0, 0, 0, 0)
+        d.setTime(d.getTime() + (d.getTimezoneOffset() * 60 * 1000))
+        // console.log(d.getTime())
+        // console.log(d)
+        if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4) {
+          return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
+          (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
+          ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) &&
+          (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true)
+        }
+        return true
+      })
       return this.rows.filter((row) => {
         let qd = new Date(this.q4)
         qd.setHours(0, 0, 0, 0)
         qd.setTime(qd.getTime() + (qd.getTimezoneOffset() * 60 * 1000))
-        console.log(qd.getTime())
-        console.log(qd)
+        // console.log(qd.getTime())
+        // console.log(qd)
         let d = new Date(row['last_post_date'])
         d.setHours(0, 0, 0, 0)
         d.setTime(d.getTime() + (d.getTimezoneOffset() * 60 * 1000))
-        console.log(d.getTime())
-        console.log(d)
+        // console.log(d.getTime())
+        // console.log(d)
         if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4) {
           return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
           (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
@@ -96,6 +116,7 @@ const v2 = new Vue({
         console.log(dataSample.body)
         let body = JSON.parse(dataSample.body)
         let rows = []
+        let rows2 = []
         let columns = []
         for (var colName in body) {
           if (body.hasOwnProperty(colName)) {
@@ -120,9 +141,12 @@ const v2 = new Vue({
             for (var id in col) {
               if (col.hasOwnProperty(id)) {
                 var val = col[id]
+
                 if (!rows[id]) {
                   rows[id] = {'id': id}
+                  rows2[id] = {'id': id}
                 }
+                rows2[id][colName] = val
                 if (colName === 'picture') {
                   rows[id][colName] = '<img src ="' + val + '" />'
                 } else if (colName === 'id') {
@@ -135,6 +159,7 @@ const v2 = new Vue({
           }
         }
         v1.rows = rows
+        v1.rows2 = rows2
         // console.log(v1.rows)
         v1.columns = columns
         // v1.flag = true
@@ -153,6 +178,7 @@ const v2 = new Vue({
       // console.log(dataSample);
       let body = JSON.parse(dataSample.body)
       let rows = []
+      let rows2 = []
       let columns = []
       for (var colName in body) {
         if (body.hasOwnProperty(colName)) {
@@ -179,7 +205,9 @@ const v2 = new Vue({
               var val = col[id]
               if (!rows[id]) {
                 rows[id] = {'id': id}
+                rows2[id] = {'id': id}
               }
+              rows2[id][colName] = val
               if (colName === 'picture') {
                 rows[id][colName] = '<img src ="' + val + '" />'
               } else if (colName === 'id') {
@@ -194,6 +222,7 @@ const v2 = new Vue({
       // console.log(rows);
       v1.columns = columns
       v1.rows = rows
+      v1.rows2 = rows2
       // console.log(this.customFilter)
     }).catch((err) => {
       console.log(err)
