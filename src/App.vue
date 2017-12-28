@@ -32,13 +32,22 @@
             <input type="number" v-model="$parent.q2" placeholder="A positive number">
           </div>
           <div class="filterbar w3-light-grey" id="filter3">
-            <label for="operator3">US Percent</label>
+            <label for="operator3">US Likes Percent</label>
             <select v-model="$parent.op3" name="operator3">
               <option value=">">greater than</option>
               <option value="<">less than</option>
               <option value="=">equal to</option>
             </select>
             <input type="text" v-model="$parent.q3" placeholder="e.g. 50.5">
+          </div>
+          <div class="filterbar w3-light-grey" id="filter5">
+            <label for="operator5">US Talking About Percent</label>
+            <select v-model="$parent.op5" name="operator5">
+              <option value=">">greater than</option>
+              <option value="<">less than</option>
+              <option value="=">equal to</option>
+            </select>
+            <input type="text" v-model="$parent.q5" placeholder="e.g. 50.5">
           </div>
           <div class="filterbar w3-light-grey" id="filter4">
             <label for="operator4">Last Post Date</label>

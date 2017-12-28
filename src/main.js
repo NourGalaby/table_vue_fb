@@ -45,6 +45,8 @@ const v1 = new Vue({
     op3: '>',
     q4: '',
     op4: '>',
+    q5: '',
+    op5: '>',
     converter: conv
   },
   template: '<App/>',
@@ -75,11 +77,13 @@ const v1 = new Vue({
         // console.log(row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined)
         // console.log(parseFloat(row['US_fans_percent']))
         // console.log(this.q3 / 100)
-        if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4) {
+        // console.log(operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)))
+        if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4 || (this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0)) {
           return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
           (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
           ((row['US percent'] !== null && row['US percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : ((row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US_fans_percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : (!((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0))))) &&
-          (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true)
+          (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true) &&
+          ((this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) ? operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)) : true)
         }
         return true
       })
@@ -94,11 +98,12 @@ const v1 = new Vue({
         d.setTime(d.getTime() + (d.getTimezoneOffset() * 60 * 1000))
         // console.log(d.getTime())
         // console.log(d)
-        if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4) {
+        if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4 || (this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0)) {
           return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
           (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
           ((row['US percent'] !== null && row['US percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : ((row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US_fans_percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : (!((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0))))) &&
-          (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true)
+          (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true) &&
+          ((this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) ? operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)) : true)
         }
         return true
       })
