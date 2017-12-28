@@ -59,7 +59,7 @@ const v1 = new Vue({
         '<': function (x, y) { return x < y },
         '=': function (x, y) { return x == y }
       }
-      this.rows2.filter((row) => {
+      this.rows2 = this.rows2.filter((row) => {
         let qd = new Date(this.q4)
         qd.setHours(0, 0, 0, 0)
         qd.setTime(qd.getTime() + (qd.getTimezoneOffset() * 60 * 1000))
