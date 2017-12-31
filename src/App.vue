@@ -2,11 +2,12 @@
   <div id="app">
     <!-- <img src="./assets/fb-art.png">
     <br> -->
-    <nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;" id="mySidebar">
-      <div>
+    <nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;height:60%;overflow:hidden;" id="mySidebar">
+      <div style="height:100%">
         <!-- v-on:click="tggleacc" -->
-        <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" >Advanced Filters</button>
-        <div class="panel w3-light-grey">
+        <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" v-on:click="tggleacc" >Advanced Filters</button>
+        <!-- style="height:350px;margin:auto;" -->
+        <div class="panel w3-light-grey" id="fltrdiv">
           <div class="filterbar w3-light-grey" id="filter1">
             <!-- <label for="">Filter by : </label> -->
             <!-- <select v-model="$parent.f"> -->
@@ -58,9 +59,21 @@
             </select>
             <input type="date" v-model="$parent.q4" placeholder="Date">
           </div>
+          <div class="btn-right">
+            <button  id="csv-btn" class="btn w3-dark-grey" v-on:click="csv">Save as CSV</button>
+          </div>
         </div>
-        <div class="btn-right">
-          <button  id="csv-btn" class="btn w3-dark-grey" v-on:click="csv">Save as CSV</button>
+        <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" v-on:click="tggleacc">Country list</button>
+        <div id="cntrydiv">
+          <div>
+            <input type="checkbox" name="UKch" id="UKch" value="UK">UK
+            <input type="checkbox" name="USch" id="USch" value="US" checked>US
+            <input type="checkbox" name="EGch" id="EGch" value="EG">EG
+            <input type="checkbox" name="JPch" id="JPch" value="JP">JP
+          </div>
+          <div class="btn-right">
+            <button  id="cntry-btn" class="btn w3-dark-grey" v-on:click="postCountries" >Submit</button>
+          </div>
         </div>
       </div>
     </nav>
@@ -91,40 +104,47 @@ export default {
   name: 'app',
   methods: {
     tggleacc: function (event) {
-      var panel = event.target.nextElementSibling
+      // var panel = event.target.nextElementSibling
       // console.log(panel.style.display);
-      if (panel.style.display === 'block') {
-        panel.style.display = 'none'
+      var filterPanel = document.getElementById('fltrdiv')
+      var countryPanel = document.getElementById('cntrydiv')
+      if (filterPanel.style.display !== 'none') {
+        filterPanel.style.display = 'none'
+        countryPanel.style.display = 'block'
       } else {
-        panel.style.display = 'block'
+        filterPanel.style.display = 'block'
+        countryPanel.style.display = 'none'
       }
     },
-  csv: function () {
-    const converter = require('json-2-csv')
-    // console.log(this)
-    // console.log(this.$children)
-    // console.log(this.$parent.customFilter)
-    converter.json2csv(this.$parent.rows2, (err, converted) => {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log(converted)
-        let csvContent = 'data:text/csv;charset=utf-8,'
-        csvContent += converted
-        // converted.forEach(function(rowArray){
-        //   let row = rowArray.join(",")
-        //   csvContent += row + "\r\n" // add carriage return
-        // });
-        var encodedUri = encodeURI(csvContent)
-        var link = document.createElement("a")
-        link.setAttribute("href", encodedUri)
-        link.setAttribute("download", "statistics.csv")
-        document.body.appendChild(link) // Required for FF
+    csv: function () {
+      const converter = require('json-2-csv')
+      // console.log(this)
+      // console.log(this.$children)
+      // console.log(this.$parent.customFilter)
+      converter.json2csv(this.$parent.rows2, (err, converted) => {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(converted)
+          let csvContent = 'data:text/csv;charset=utf-8,'
+          csvContent += converted
+          // converted.forEach(function(rowArray){
+          //   let row = rowArray.join(",")
+          //   csvContent += row + "\r\n" // add carriage return
+          // });
+          var encodedUri = encodeURI(csvContent)
+          var link = document.createElement("a")
+          link.setAttribute("href", encodedUri)
+          link.setAttribute("download", "statistics.csv")
+          document.body.appendChild(link) // Required for FF
 
-        link.click()
-      }
-    })
-  }
+          link.click()
+        }
+      })
+    },
+    postCountries: function () {
+      // this.$http.post().then().catch()
+    }
   }
 }
 </script>
@@ -183,8 +203,13 @@ export default {
     padding: 0 6px;
     background-color: #ddd;
     display: block;
+    height: 80%;
+    overflow-y: scroll;
     /* margin: auto;
     width: 75%; */
+  }
+  #cntrydiv {
+    display: none;
   }
   .filterbar {
     overflow: hidden;
@@ -213,4 +238,7 @@ export default {
     margin-bottom: 3px;
     /* display: inline-block; */
   }
+  /* nav {
+    height: 40%;
+  } */
 </style>
