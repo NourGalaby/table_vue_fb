@@ -65,11 +65,11 @@
         </div>
         <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" v-on:click="tggleacc">Country list</button>
         <div id="cntrydiv">
-          <div>
-            <input type="checkbox" name="UKch" id="UKch" value="UK">UK
-            <input type="checkbox" name="USch" id="USch" value="US" checked>US
-            <input type="checkbox" name="EGch" id="EGch" value="EG">EG
-            <input type="checkbox" name="JPch" id="JPch" value="JP">JP
+          <div style="margin-top:2%;">
+            <input type="checkbox" name="UKch" id="UKch" value="UK"><label for="UKch">UK</label>
+            <input type="checkbox" name="USch" id="USch" value="US" checked><label for="USch">US</label>
+            <input type="checkbox" name="EGch" id="EGch" value="EG"><label for="EGch">EG</label>
+            <input type="checkbox" name="JPch" id="JPch" value="JP"><label for="JPch">JP</label>
           </div>
           <div class="btn-right">
             <button  id="cntry-btn" class="btn w3-dark-grey" v-on:click="postCountries" >Submit</button>
@@ -143,7 +143,8 @@ export default {
       })
     },
     postCountries: function () {
-      // this.$http.post().then().catch()
+      let countryVals = document.querySelectorAll('input[type=checkbox]:checked').map(box => box.value)
+      this.$http.post('http://localhost:5000/countries',{countries: countryVals}).then((data, status, request) => {}).catch((error) => {})
     }
   }
 }
@@ -209,7 +210,11 @@ export default {
     width: 75%; */
   }
   #cntrydiv {
+    padding: 0 6px;
     display: none;
+    /* padding: 1%; */
+    height: 80%;
+    overflow-y: scroll;
   }
   .filterbar {
     overflow: hidden;
@@ -241,4 +246,74 @@ export default {
   /* nav {
     height: 40%;
   } */
+  /* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 1.95em;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 1.25em; height: 1.25em;
+  border: 2px solid #ccc;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '✔';
+  position: absolute;
+  top: .1em; left: .15em;
+  font-size: 1.4em;
+  line-height: 0.8;
+  color: #09ad7e;
+  transition: all .2s;
+  font-family: Helvetica, Arial, sans-serif;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+/* disabled checkbox */
+[type="checkbox"]:disabled:not(:checked) + label:before,
+[type="checkbox"]:disabled:checked + label:before {
+  box-shadow: none;
+  border-color: #bbb;
+  background-color: #ddd;
+}
+[type="checkbox"]:disabled:checked + label:after {
+  color: #999;
+}
+[type="checkbox"]:disabled + label {
+  color: #aaa;
+}
+/* accessibility */
+[type="checkbox"]:checked:focus + label:before,
+[type="checkbox"]:not(:checked):focus + label:before {
+  border: 2px dotted blue;
+}
+
+/* hover style just for information */
+label:hover:before {
+  border: 2px solid #4778d9!important;
+}
+
 </style>
