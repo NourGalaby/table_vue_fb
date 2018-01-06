@@ -3,7 +3,7 @@
     <!-- <img src="./assets/fb-art.png">
     <br> -->
     <nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;height:60%;overflow:hidden;" id="mySidebar">
-      <div style="height:100%">
+      <div style="height:100%" id="fltrprnt">
         <!-- v-on:click="tggleacc" -->
         <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" v-on:click="tggleacc" >Advanced Filters</button>
         <!-- style="height:350px;margin:auto;" -->
@@ -16,48 +16,68 @@
               <!-- <option value="US_Total">US Total Fans</option> -->
             
             <!-- </select> -->
-            <select v-model="$parent.op1" name="operator1">
+            <select v-model="$parent.op1" class="form-control" name="operator1">
               <option value=">">greater than</option>
               <option value="<">less than</option>
               <option value="=">equal to</option>
             </select>
-            <input type="number" v-model="$parent.q1" placeholder="A positive number">
-          </div>
-          <div class="filterbar w3-light-grey" id="filter2">
-            <label for="operator2">US Total Fans</label>
-            <select v-model="$parent.op2" name="operator2">
-              <option value=">">greater than</option>
-              <option value="<">less than</option>
-              <option value="=">equal to</option>
-            </select>
-            <input type="number" v-model="$parent.q2" placeholder="A positive number">
-          </div>
-          <div class="filterbar w3-light-grey" id="filter3">
-            <label for="operator3">US Likes Percent</label>
-            <select v-model="$parent.op3" name="operator3">
-              <option value=">">greater than</option>
-              <option value="<">less than</option>
-              <option value="=">equal to</option>
-            </select>
-            <input type="text" v-model="$parent.q3" placeholder="e.g. 50.5">
-          </div>
-          <div class="filterbar w3-light-grey" id="filter5">
-            <label for="operator5">US Talking About Percent</label>
-            <select v-model="$parent.op5" name="operator5">
-              <option value=">">greater than</option>
-              <option value="<">less than</option>
-              <option value="=">equal to</option>
-            </select>
-            <input type="text" v-model="$parent.q5" placeholder="e.g. 50.5">
+            <input type="number" v-model="$parent.q1" class="form-control" placeholder="A positive number">
           </div>
           <div class="filterbar w3-light-grey" id="filter4">
             <label for="operator4">Last Post Date</label>
-            <select v-model="$parent.op4" name="operator4">
+            <select v-model="$parent.op4" class="form-control" name="operator4">
               <option value=">">greater than</option>
               <option value="<">less than</option>
               <option value="=">equal to</option>
             </select>
-            <input type="date" v-model="$parent.q4" placeholder="Date">
+            <input type="date" v-model="$parent.q4" class="form-control" placeholder="Date">
+          </div>
+          <div class="filterbar w3-light-grey" id="filter2">
+            <label for="operator2">US Total Fans</label>
+            <select v-model="$parent.op2" class="form-control" name="operator2">
+              <option value=">">greater than</option>
+              <option value="<">less than</option>
+              <option value="=">equal to</option>
+            </select>
+            <input type="number" v-model="$parent.q2" class="form-control" placeholder="A positive number">
+          </div>
+          <div class="filterbar w3-light-grey" id="filter3">
+            <label for="operator3">US Likes Percent</label>
+            <select v-model="$parent.op3" class="form-control" name="operator3">
+              <option value=">">greater than</option>
+              <option value="<">less than</option>
+              <option value="=">equal to</option>
+            </select>
+            <input type="text" v-model="$parent.q3" class="form-control" placeholder="e.g. 50.5">
+          </div>
+          <!-- filter6 yet in main.js -->
+          <div class="filterbar w3-light-grey" id="filter6">
+            <label for="operator6">US Talking About</label>
+            <select v-model="$parent.op6" class="form-control" name="operator6">
+              <option value=">">greater than</option>
+              <option value="<">less than</option>
+              <option value="=">equal to</option>
+            </select>
+            <input type="text" v-model="$parent.q6" class="form-control" placeholder="A positive number">
+          </div>
+          <div class="filterbar w3-light-grey" id="filter5">
+            <label for="operator5">US Talking About Percent</label>
+            <select v-model="$parent.op5" class="form-control" name="operator5">
+              <option value=">">greater than</option>
+              <option value="<">less than</option>
+              <option value="=">equal to</option>
+            </select>
+            <input type="text" v-model="$parent.q5" class="form-control" placeholder="e.g. 50.5">
+          </div>
+          
+          <div id="add-filter">
+            <label for="operator4">Choose another country</label>
+            <select  class="form-control" name="countries" id="dc-filters">
+              <option value="UK">UK</option>
+              <option value="JP">JP</option>
+              <option value="EG">EG</option>
+            </select>
+            <button v-on:click="addFilters">Add Filters</button>
           </div>
           <div class="btn-right">
             <button  id="csv-btn" class="btn w3-dark-grey" v-on:click="csv">Save as CSV</button>
@@ -102,6 +122,11 @@
 <script>
 export default {
   name: 'app',
+  data () {
+    return {
+      f: 6
+    }
+  },
   methods: {
     tggleacc: function (event) {
       // var panel = event.target.nextElementSibling
@@ -133,9 +158,9 @@ export default {
           //   csvContent += row + "\r\n" // add carriage return
           // });
           var encodedUri = encodeURI(csvContent)
-          var link = document.createElement("a")
-          link.setAttribute("href", encodedUri)
-          link.setAttribute("download", "statistics.csv")
+          var link = document.createElement('a')
+          link.setAttribute('href', encodedUri)
+          link.setAttribute('download', 'statistics.csv')
           document.body.appendChild(link) // Required for FF
 
           link.click()
@@ -144,7 +169,112 @@ export default {
     },
     postCountries: function () {
       let countryVals = document.querySelectorAll('input[type=checkbox]:checked').map(box => box.value)
-      this.$http.post('http://localhost:5000/countries',{countries: countryVals}).then((data, status, request) => {}).catch((error) => {})
+      this.$http.post('http://localhost:5000/countries', {countries: countryVals}).then((data, status, request) => {}).catch((error) => { console.log(error) })
+    },
+    addFilters: function () {
+      const filterCountry = document.getElementById('dc-filters').options[document.getElementById('dc-filters').selectedIndex].value
+      this.f++
+      let localf = this.f
+      this.$parent.qarr[this.f - 7] = [null, null, null, null, filterCountry]
+      this.$parent.oparr[this.f - 7] = [null, null, null, null]
+      let lbl = document.createElement('LABEL')
+      let slct = document.createElement('SELECT')
+      let inpt = document.createElement('INPUT')
+      lbl.setAttribute('for', `operator${localf}`)
+      lbl.textContent = `${filterCountry} Likes`
+      inpt.setAttribute('type', 'text')
+      inpt.setAttribute('v-model', `$parent.qarr[${this.f - 7}][0]`)
+      inpt.setAttribute('class', 'form-control')
+      inpt.setAttribute('placeholder', 'A positive number')
+      let opGreater = document.createElement('option')
+      opGreater.text = 'greater than'
+      opGreater.setAttribute('value', '>')
+      let opLess = document.createElement('option')
+      opLess.text = 'less than'
+      opLess.setAttribute('value', '<')
+      let opEqual = document.createElement('option')
+      opEqual.text = 'equal to'
+      opEqual.setAttribute('value', '=')
+      slct.setAttribute('v-model', `$parent.oparr[${this.f - 7}][0]`)
+      slct.setAttribute('class', 'form-control')
+      slct.setAttribute('name', `operator${localf}`)
+      slct.add(opGreater)
+      slct.add(opLess)
+      slct.add(opEqual)
+      let filterDiv = document.createElement('div')
+      filterDiv.appendChild(lbl)
+      filterDiv.appendChild(slct)
+      filterDiv.appendChild(inpt)
+      // --------
+      localf++
+      let lbl1 = document.createElement('LABEL')
+      let slct1 = document.createElement('SELECT')
+      let inpt1 = document.createElement('INPUT')
+      lbl1.setAttribute('for', `operator${localf}`)
+      lbl1.textContent = `${filterCountry} Likes Percent`
+      inpt1.setAttribute('type', 'text')
+      inpt1.setAttribute('v-model', `$parent.qarr[${this.f - 7}][1]`)
+      inpt1.setAttribute('class', 'form-control')
+      inpt1.setAttribute('placeholder', 'e.g. 50.5')
+
+      slct1.setAttribute('v-model', `$parent.oparr[${this.f - 7}][1]`)
+      slct1.setAttribute('class', 'form-control')
+      slct1.setAttribute('name', `operator${localf}`)
+      slct1.add(opGreater)
+      slct1.add(opLess)
+      slct1.add(opEqual)
+      let filterDiv1 = document.createElement('div')
+      filterDiv1.appendChild(lbl1)
+      filterDiv1.appendChild(slct1)
+      filterDiv1.appendChild(inpt1)
+      // --------
+      localf++
+      let lbl2 = document.createElement('LABEL')
+      let slct2 = document.createElement('SELECT')
+      let inpt2 = document.createElement('INPUT')
+      lbl2.setAttribute('for', `operator${localf}`)
+      lbl2.textContent = `${filterCountry} Talking About`
+      inpt2.setAttribute('type', 'text')
+      inpt2.setAttribute('v-model', `$parent.qarr[${this.f - 7}][2]`)
+      inpt2.setAttribute('class', 'form-control')
+      inpt2.setAttribute('placeholder', 'A positive number')
+
+      slct2.setAttribute('v-model', `$parent.oparr[${this.f - 7}][2]`)
+      slct2.setAttribute('class', 'form-control')
+      slct.setAttribute('name', `operator${localf}`)
+      slct.add(opGreater)
+      slct.add(opLess)
+      slct.add(opEqual)
+      let filterDiv2 = document.createElement('div')
+      filterDiv2.appendChild(lbl2)
+      filterDiv2.appendChild(slct2)
+      filterDiv2.appendChild(inpt2)
+      localf++
+      let lbl3 = document.createElement('LABEL')
+      let slct3 = document.createElement('SELECT')
+      let inpt3 = document.createElement('INPUT')
+      lbl3.setAttribute('for', `operator${localf}`)
+      lbl3.textContent = `${filterCountry} Talking About Percent`
+      inpt3.setAttribute('type', 'text')
+      inpt3.setAttribute('v-model', `$parent.qarr[${this.f - 7}][3]`)
+      inpt3.setAttribute('class', 'form-control')
+      inpt3.setAttribute('placeholder', 'e.g. 50.5')
+
+      slct3.setAttribute('v-model', `$parent.oparr[${this.f - 7}][3]`)
+      slct3.setAttribute('class', 'form-control')
+      slct3.setAttribute('name', `operator${localf}`)
+      slct3.add(opGreater)
+      slct3.add(opLess)
+      slct3.add(opEqual)
+      let filterDiv3 = document.createElement('div')
+      filterDiv3.appendChild(lbl3)
+      filterDiv3.appendChild(slct3)
+      filterDiv3.appendChild(inpt3)
+
+      document.getElementById('fltrdiv').insertBefore(filterDiv, document.getElementById('add-filter'))
+      document.getElementById('fltrdiv').insertBefore(filterDiv1, document.getElementById('add-filter'))
+      document.getElementById('fltrdiv').insertBefore(filterDiv2, document.getElementById('add-filter'))
+      document.getElementById('fltrdiv').insertBefore(filterDiv3, document.getElementById('add-filter'))
     }
   }
 }
@@ -315,5 +445,8 @@ export default {
 label:hover:before {
   border: 2px solid #4778d9!important;
 }
-
+.w3-dark-grey {
+  color: #fff!important;
+  background-color: #009688!important;
+}
 </style>

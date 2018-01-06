@@ -47,6 +47,10 @@ const v1 = new Vue({
     op4: '>',
     q5: '',
     op5: '>',
+    q6: '',
+    op6: '>',
+    qarr: [],
+    oparr: [],
     converter: conv
   },
   template: '<App/>',
@@ -78,6 +82,49 @@ const v1 = new Vue({
         // console.log(parseFloat(row['US_fans_percent']))
         // console.log(this.q3 / 100)
         // console.log(operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)))
+        if (this.qarr.length) {
+          for (var index = 0; index < this.qarr.length; index++) {
+            var countryFilter = this.qarr[index]
+            var countryName = countryFilter[4]
+            for (var i = 0; i < countryFilter.length - 1; i++) {
+              var value = countryFilter[i]
+              if (value !== null && value !== '' && value !== undefined) {
+                switch (i) {
+                  case 0:
+                    if (this.oparr[index][i] && row[`${countryName}_Total`]) {
+                      if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_Total`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  case 1:
+                    if (this.oparr[index][i] && row[`${countryName} Percent`]) {
+                      if (!(operatorFromString[this.oparr[index][i]](row[`${countryName} Percent`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  case 2:
+                    if (this.oparr[index][i] && row[`${countryName}_talking`]) {
+                      if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_talking`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  case 3:
+                    if (this.oparr[index][i] && row[`${countryName}_talking_percent`]) {
+                      if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_talking_percent`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  default:
+                    break
+                }
+              }
+            }
+          }
+        }
         if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4 || (this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0)) {
           return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
           (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
