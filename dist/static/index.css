@@ -66,7 +66,7 @@ body {
   /* margin-left: 16px; */
   padding: 14px 16px;
   font-size: 13px;
-  width: 75%;
+  width: 68%;
 }
 .topnav #token {
   float: none;
@@ -82,14 +82,15 @@ body {
 }
 
 .topnav button {
-  float: right;
+  /* float: none; */
   padding: 6px;
   margin-top: 8px;
   margin-bottom: 8px;
-  /* margin-right: 16px; */
+  /* margin-left: 2px; */
+  /* margin-right: 2px; */
   padding: 14px 16px;
   font-size: 13px;
-  width: 15%;
+  /* width: 40%; */
 }
 .btn {
   /* background-color: #0E100E; Green */
@@ -156,4 +157,90 @@ body {
 /* Add a hover effect (blue shadow) */
 .img-thumbnail:hover {
     box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  /* z-index: 1; Sit on top */
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1050;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  /* overflow: auto; Enable scroll if needed */
+  /* overflow: hidden; */
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+}
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 900px;
+  }
+}
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity .15s linear;
+       -o-transition: opacity .15s linear;
+          transition: opacity .15s linear;
+}
+.fade.in {
+  opacity: 1;
+}
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 5px;
+}
+.modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+       -o-transition:      -o-transform .3s ease-out;
+          transition:         transform .3s ease-out;
+  -webkit-transform: translate(0, -25%);
+      -ms-transform: translate(0, -25%);
+       -o-transform: translate(0, -25%);
+          transform: translate(0, -25%);
+}
+.modal-content {
+  position: relative;
+  background-color: #fff;
+  -webkit-background-clip: padding-box;
+          background-clip: padding-box;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  outline: 0;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+          box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  width: 100%; /* Could be more or less, depending on screen size */
+  height: 100%;
+}
+.close {
+  float: right;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  filter: alpha(opacity=20);
+  opacity: .2;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  filter: alpha(opacity=50);
+  opacity: .5;
+}
+button.close {
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
 }

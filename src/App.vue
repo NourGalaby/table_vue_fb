@@ -5,7 +5,7 @@
     <nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;height:60%;overflow:hidden;" id="mySidebar">
       <div style="height:100%" id="fltrprnt">
         <!-- v-on:click="tggleacc" -->
-        <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" v-on:click="tggleacc" >Advanced Filters</button>
+        <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" >Advanced Filters</button>
         <!-- style="height:350px;margin:auto;" -->
         <div class="panel w3-light-grey" id="fltrdiv">
           <div class="filterbar w3-light-grey" id="filter1">
@@ -71,11 +71,53 @@
           </div>
           
           <div id="add-filter">
-            <label for="operator4">Choose another country</label>
+            <label for="operator4">Choose a country to filter with</label>
             <select  class="form-control" name="countries" id="dc-filters">
-              <option value="UK">UK</option>
-              <option value="JP">JP</option>
+              <option value="AE">AE</option> 
+              <option value="AR">AR</option>
+              <option value="AU">AU</option>
+              <option value="BD">BD</option>
+              <option value="BE">BE</option>
+              <option value="BR">BR</option>
+              <option value="CA">CA</option>
+              <option value="CL">CL</option>
+              <option value="CO">CO</option>
+              <option value="DE">DE</option>
+              <option value="DZ">DZ</option>
+              <option value="EC">EC</option>
               <option value="EG">EG</option>
+              <option value="ES">ES</option>
+              <option value="FR">FR</option>
+              <option value="GB">GB</option>
+              <option value="HK">HK</option>
+              <option value="ID">ID</option>
+              <option value="IN">IN</option>
+              <option value="IQ">IQ</option>
+              <option value="IR">IR</option>
+              <option value="IT">IT</option>
+              <option value="JP">JP</option>
+              <option value="KH">KH</option>
+              <option value="KR">KR</option>
+              <option value="LK">LK</option>
+              <option value="MA">MA</option>
+              <option value="MM">MM</option>
+              <option value="MX">MX</option>
+              <option value="MY">MY</option>
+              <option value="PE">PE</option>
+              <option value="PH">PH</option>
+              <option value="PK">PK</option>
+              <option value="PL">PL</option>
+              <option value="RO">RO</option>
+              <option value="SA">SA</option>
+              <option value="SG">SG</option>
+              <option value="SY">SY</option>
+              <option value="TH">TH</option>
+              <option value="TN">TN</option>
+              <option value="TR">TR</option>
+              <option value="TW">TW</option>
+              <option value="US">US</option>
+              <option value="VE">VE</option>
+              <option value="VN">VN</option>
             </select>
             <button v-on:click="addFilters">Add Filters</button>
           </div>
@@ -83,18 +125,7 @@
             <button  id="csv-btn" class="btn w3-dark-grey" v-on:click="csv">Save as CSV</button>
           </div>
         </div>
-        <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" v-on:click="tggleacc">Country list</button>
-        <div id="cntrydiv">
-          <div style="margin-top:2%;">
-            <input type="checkbox" name="UKch" id="UKch" value="UK"><label for="UKch">UK</label>
-            <input type="checkbox" name="USch" id="USch" value="US" checked><label for="USch">US</label>
-            <input type="checkbox" name="EGch" id="EGch" value="EG"><label for="EGch">EG</label>
-            <input type="checkbox" name="JPch" id="JPch" value="JP"><label for="JPch">JP</label>
-          </div>
-          <div class="btn-right">
-            <button  id="cntry-btn" class="btn w3-dark-grey" v-on:click="postCountries" >Submit</button>
-          </div>
-        </div>
+        
       </div>
     </nav>
     <!-- <router-view/> -->
@@ -167,10 +198,6 @@ export default {
         }
       })
     },
-    postCountries: function () {
-      let countryVals = document.querySelectorAll('input[type=checkbox]:checked').map(box => box.value)
-      this.$http.post('http://localhost:5000/countries', {countries: countryVals}).then((data, status, request) => {}).catch((error) => { console.log(error) })
-    },
     addFilters: function () {
       const filterCountry = document.getElementById('dc-filters').options[document.getElementById('dc-filters').selectedIndex].value
       this.f++
@@ -217,12 +244,22 @@ export default {
       inpt1.setAttribute('class', 'form-control')
       inpt1.setAttribute('placeholder', 'e.g. 50.5')
 
+      let opGreater1 = document.createElement('option')
+      opGreater1.text = 'greater than'
+      opGreater1.setAttribute('value', '>')
+      let opLess1 = document.createElement('option')
+      opLess1.text = 'less than'
+      opLess1.setAttribute('value', '<')
+      let opEqual1 = document.createElement('option')
+      opEqual1.text = 'equal to'
+      opEqual1.setAttribute('value', '=')
+
       slct1.setAttribute('v-model', `$parent.oparr[${this.f - 7}][1]`)
       slct1.setAttribute('class', 'form-control')
       slct1.setAttribute('name', `operator${localf}`)
-      slct1.add(opGreater)
-      slct1.add(opLess)
-      slct1.add(opEqual)
+      slct1.add(opGreater1)
+      slct1.add(opLess1)
+      slct1.add(opEqual1)
       let filterDiv1 = document.createElement('div')
       filterDiv1.appendChild(lbl1)
       filterDiv1.appendChild(slct1)
@@ -239,12 +276,23 @@ export default {
       inpt2.setAttribute('class', 'form-control')
       inpt2.setAttribute('placeholder', 'A positive number')
 
+      let opGreater2 = document.createElement('option')
+      opGreater2.text = 'greater than'
+      opGreater2.setAttribute('value', '>')
+      let opLess2 = document.createElement('option')
+      opLess2.text = 'less than'
+      opLess2.setAttribute('value', '<')
+      let opEqual2 = document.createElement('option')
+      opEqual2.text = 'equal to'
+      opEqual2.setAttribute('value', '=')
+
       slct2.setAttribute('v-model', `$parent.oparr[${this.f - 7}][2]`)
       slct2.setAttribute('class', 'form-control')
-      slct.setAttribute('name', `operator${localf}`)
-      slct.add(opGreater)
-      slct.add(opLess)
-      slct.add(opEqual)
+      slct2.setAttribute('name', `operator${localf}`)
+      slct2.add(opGreater2)
+      slct2.add(opLess2)
+      slct2.add(opEqual2)
+
       let filterDiv2 = document.createElement('div')
       filterDiv2.appendChild(lbl2)
       filterDiv2.appendChild(slct2)
@@ -260,12 +308,22 @@ export default {
       inpt3.setAttribute('class', 'form-control')
       inpt3.setAttribute('placeholder', 'e.g. 50.5')
 
+      let opGreater3 = document.createElement('option')
+      opGreater3.text = 'greater than'
+      opGreater3.setAttribute('value', '>')
+      let opLess3 = document.createElement('option')
+      opLess3.text = 'less than'
+      opLess3.setAttribute('value', '<')
+      let opEqual3 = document.createElement('option')
+      opEqual3.text = 'equal to'
+      opEqual3.setAttribute('value', '=')
+
       slct3.setAttribute('v-model', `$parent.oparr[${this.f - 7}][3]`)
       slct3.setAttribute('class', 'form-control')
       slct3.setAttribute('name', `operator${localf}`)
-      slct3.add(opGreater)
-      slct3.add(opLess)
-      slct3.add(opEqual)
+      slct3.add(opGreater3)
+      slct3.add(opLess3)
+      slct3.add(opEqual3)
       let filterDiv3 = document.createElement('div')
       filterDiv3.appendChild(lbl3)
       filterDiv3.appendChild(slct3)
@@ -334,18 +392,18 @@ export default {
     padding: 0 6px;
     background-color: #ddd;
     display: block;
-    height: 80%;
+    height: 90%;
     overflow-y: scroll;
     /* margin: auto;
     width: 75%; */
   }
-  #cntrydiv {
+  /* #cntrydiv {
     padding: 0 6px;
     display: none;
-    /* padding: 1%; */
+    padding: 1%;
     height: 80%;
     overflow-y: scroll;
-  }
+  } */
   .filterbar {
     overflow: hidden;
     background-color: #e9e9e9;
