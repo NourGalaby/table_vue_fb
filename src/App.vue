@@ -32,7 +32,7 @@
             </select>
             <input type="date" v-model="$parent.q4" class="form-control" placeholder="Date">
           </div>
-          <div class="filterbar w3-light-grey" id="filter2">
+          <!-- <div class="filterbar w3-light-grey" id="filter2">
             <label for="operator2">US Total Fans</label>
             <select v-model="$parent.op2" class="form-control" name="operator2">
               <option value=">">greater than</option>
@@ -50,7 +50,7 @@
             </select>
             <input type="text" v-model="$parent.q3" class="form-control" placeholder="e.g. 50.5">
           </div>
-          <!-- filter6 yet in main.js -->
+          
           <div class="filterbar w3-light-grey" id="filter6">
             <label for="operator6">US Talking About</label>
             <select v-model="$parent.op6" class="form-control" name="operator6">
@@ -68,10 +68,10 @@
               <option value="=">equal to</option>
             </select>
             <input type="text" v-model="$parent.q5" class="form-control" placeholder="e.g. 50.5">
-          </div>
-          
+          </div> -->
+          <div id="added-filters"></div>
           <div id="add-filter">
-            <label for="operator4">Choose a country to filter with</label>
+            <label for="operator4">Custom filter</label>
             <select  class="form-control" name="countries" id="dc-filters">
               <option value="AE">AE</option> 
               <option value="AR">AR</option>
@@ -119,7 +119,13 @@
               <option value="VE">VE</option>
               <option value="VN">VN</option>
             </select>
-            <button v-on:click="addFilters">Add Filters</button>
+            <select class="form-control" name="type" id="dc-filter-type">
+              <option value="Likes">Likes</option> 
+              <option value="Likes Percent">Likes Percent</option>
+              <option value="Talking About">Talking About</option>
+              <option value="Talking About Percent">Talking About Percent</option>
+            </select>
+            <button v-on:click="addFilter">Add Filters</button>
           </div>
           <div class="btn-right">
             <button  id="csv-btn" class="btn w3-dark-grey" v-on:click="csv">Save as CSV</button>
@@ -333,6 +339,89 @@ export default {
       document.getElementById('fltrdiv').insertBefore(filterDiv1, document.getElementById('add-filter'))
       document.getElementById('fltrdiv').insertBefore(filterDiv2, document.getElementById('add-filter'))
       document.getElementById('fltrdiv').insertBefore(filterDiv3, document.getElementById('add-filter'))
+    },
+    ch: function (ev) {
+      console.log('ch')
+      this.$parent.$set(this.$parent.arr[this.$parent.nbf], 0, ev.target.value)
+    },
+    addFilter: function () {
+      var Vue = require('vue');
+      const filterCountry = document.getElementById('dc-filters').options[document.getElementById('dc-filters').selectedIndex].value
+      const filterType = document.getElementById('dc-filter-type').options[document.getElementById('dc-filter-type').selectedIndex].value
+      const si = document.getElementById('dc-filters').selectedIndex
+      // this.$parent.$set(this.$parent.arr, this.$parent.nbf, {})
+      // this.$parent.$set(this.$parent.arr[this.$parent.nbf], 0, null)
+      // this.$parent.$set(this.$parent.arr[this.$parent.nbf], 1, null)
+      // this.$parent.$set(this.$parent.arr[this.$parent.nbf], 2, filterType)
+      // this.$parent.$set(this.$parent.arr[this.$parent.nbf], 3, filterCountry)
+
+      // this.$parent.arr[this.$parent.nbf] = {
+      //   0: null,
+      //   1: null,
+      //   2: filterType,
+      //   3: filterCountry
+      // }
+      // this.$parent[`v${this.$parent.nbf}`] = null
+      // this.$parent[`o${this.$parent.nbf}`] = null
+      // this.$parent[`f${this.$parent.nbf}`] = filterType
+      // this.$parent[`c${this.$parent.nbf}`] = filterCountry
+
+      this.$parent[`v${si}`] = ''
+      this.$parent[`o${si}`] = ''
+      this.$parent[`t${si}`] = filterType
+      this.$parent[`c${si}`] = filterCountry
+      let lbl = document.createElement('LABEL')
+      let slct = document.createElement('SELECT')
+      let inpt = document.createElement('INPUT')
+      lbl.setAttribute('for', `noperator${this.$parent.nbf}`)
+      lbl.textContent = `${filterCountry} ${filterType}`
+      inpt.setAttribute('type', 'text')
+      inpt.setAttribute('id', `id${this.$parent.nbf}`)
+      // inpt.setAttribute('v-model', `$parent.arr[${this.$parent.nbf}][0]`)
+      inpt.setAttribute('v-model', `$parent.v${si}`)
+      // inpt.setAttribute('v-on:change', 'alert("ch")')
+      inpt.setAttribute('class', 'form-control')
+      inpt.setAttribute('placeholder', 'A positive number')
+      let opGreater = document.createElement('option')
+      opGreater.text = 'greater than'
+      opGreater.setAttribute('value', '>')
+      let opLess = document.createElement('option')
+      opLess.text = 'less than'
+      opLess.setAttribute('value', '<')
+      let opEqual = document.createElement('option')
+      opEqual.text = 'equal to'
+      opEqual.setAttribute('value', '=')
+      slct.setAttribute('v-model', `$parent.o${si}`)
+      slct.setAttribute('class', 'form-control')
+      slct.setAttribute('name', `noperator${this.$parent.nbf}`)
+      slct.add(opGreater)
+      slct.add(opLess)
+      slct.add(opEqual)
+      let filterDiv = document.createElement('div')
+      filterDiv.appendChild(lbl)
+      filterDiv.appendChild(slct)
+      filterDiv.appendChild(inpt)
+      // let $element = this.$parent.$el.append(filterDiv)
+      // console.log(Vue)
+      // console.log(this.$parent.c0)
+      // console.log(this.x.c0)
+      // console.log(v1)
+      var self = this
+      // let x = this.$parent
+      // with(this){return _c('div',[_c('label',{attrs:{"for":"noperator1"}},[_v("AE Likes")]),_c('select',{directives:[{name:"model",rawName:"v-model"}],staticClass:"form-control",attrs:{"name":"noperator1"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); =$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":">"}},[_v("greater than")]),_c('option',{attrs:{"value":"<"}},[_v("less than")]),_c('option',{attrs:{"value":"="}},[_v("equal to")])]),_c('input',{directives:[{name:"model",rawName:"v-model",value:($parent.v0),expression:"$parent.v0"}],staticClass:"form-control",attrs:{"type":"text","placeholder":"A positive number"},domProps:{"value":($parent.v0)},on:{"input":function($event){if($event.target.composing)return;$set($parent, "v0", $event.target.value)}}})])}
+      // let res = Vue.default.compile(`<div><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><select v-model="$parent['o${si}']" class="form-control" name="noperator${this.$parent.nbf}"><option value=">">greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text"  v-model="$parent['v${si}']" class="form-control" placeholder="A positive number"></div>`)
+      let res = Vue.default.compile(`<div><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><select v-model="parent2.$parent['o${si}']" class="form-control" name="noperator${this.$parent.nbf}"><option value=">">greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text" v-model="parent2.$parent['v${si}']"  class="form-control" placeholder="A positive number"></div>`)
+      new Vue.default({
+        el: '#added-filters',
+        data: {
+          parent2: self
+        },
+        render: res.render,
+        staticRenderFns: res.staticRenderFns
+      })
+      // document.getElementById('fltrdiv').insertBefore(res, document.getElementById('add-filter'))
+      // document.getElementById('fltrdiv').insertBefore(filterDiv, document.getElementById('add-filter'))
+      this.$parent.nbf++
     }
   }
 }

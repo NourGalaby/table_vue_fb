@@ -51,6 +51,188 @@ const v1 = new Vue({
     op6: '>',
     qarr: [],
     oparr: [],
+    arr: {},
+    nbf: 0,
+    v0: '',
+    o0: '',
+    t0: '',
+    c0: '',
+    v1: '',
+    o1: '',
+    t1: '',
+    c1: '',
+    v2: '',
+    o2: '',
+    t2: '',
+    c2: '',
+    v3: '',
+    o3: '',
+    t3: '',
+    c3: '',
+    v4: '',
+    o4: '',
+    t4: '',
+    c4: '',
+    v5: '',
+    o5: '',
+    t5: '',
+    c5: '',
+    v6: '',
+    o6: '',
+    t6: '',
+    c6: '',
+    v7: '',
+    o7: '',
+    t7: '',
+    c7: '',
+    v8: '',
+    o8: '',
+    t8: '',
+    c8: '',
+    v9: '',
+    o9: '',
+    t9: '',
+    c9: '',
+    v10: '',
+    o10: '',
+    t10: '',
+    c10: '',
+    v11: '',
+    o11: '',
+    t11: '',
+    c11: '',
+    v12: '',
+    o12: '',
+    t12: '',
+    c12: '',
+    v13: '',
+    o13: '',
+    t13: '',
+    c13: '',
+    v14: '',
+    o14: '',
+    t14: '',
+    c14: '',
+    v15: '',
+    o15: '',
+    t15: '',
+    c15: '',
+    v16: '',
+    o16: '',
+    t16: '',
+    c16: '',
+    v17: '',
+    o17: '',
+    t17: '',
+    c17: '',
+    v18: '',
+    o18: '',
+    t18: '',
+    c18: '',
+    v19: '',
+    o19: '',
+    t19: '',
+    c19: '',
+    v20: '',
+    o20: '',
+    t20: '',
+    c20: '',
+    v21: '',
+    o21: '',
+    t21: '',
+    c21: '',
+    v22: '',
+    o22: '',
+    t22: '',
+    c22: '',
+    v23: '',
+    o23: '',
+    t23: '',
+    c23: '',
+    v24: '',
+    o24: '',
+    t24: '',
+    c24: '',
+    v25: '',
+    o25: '',
+    t25: '',
+    c25: '',
+    v26: '',
+    o26: '',
+    t26: '',
+    c26: '',
+    v27: '',
+    o27: '',
+    t27: '',
+    c27: '',
+    v28: '',
+    o28: '',
+    t28: '',
+    c28: '',
+    v29: '',
+    o29: '',
+    t29: '',
+    c29: '',
+    v30: '',
+    o30: '',
+    t30: '',
+    c30: '',
+    v31: '',
+    o31: '',
+    t31: '',
+    c31: '',
+    v32: '',
+    o32: '',
+    t32: '',
+    c32: '',
+    v33: '',
+    o33: '',
+    t33: '',
+    c33: '',
+    v34: '',
+    o34: '',
+    t34: '',
+    c34: '',
+    v35: '',
+    o35: '',
+    t35: '',
+    c35: '',
+    v36: '',
+    o36: '',
+    t36: '',
+    c36: '',
+    v37: '',
+    o37: '',
+    t37: '',
+    c37: '',
+    v38: '',
+    o38: '',
+    t38: '',
+    c38: '',
+    v39: '',
+    o39: '',
+    t39: '',
+    c39: '',
+    v40: '',
+    o40: '',
+    t40: '',
+    c40: '',
+    v41: '',
+    o41: '',
+    t41: '',
+    c41: '',
+    v42: '',
+    o42: '',
+    t42: '',
+    c42: '',
+    v43: '',
+    o43: '',
+    t43: '',
+    c43: '',
+    v44: '',
+    o44: '',
+    t44: '',
+    c44: '',
     converter: conv
   },
   template: '<App/>',
@@ -77,17 +259,82 @@ const v1 = new Vue({
         // console.log(d.getTime())
         // console.log(d)
         // console.log(row['US percent'])
+
+        // console.log('this')
+        // console.log(this)
+        // console.log('this.v0')
+        // console.log(this.v0)
+        // console.log('this.o0')
+        // console.log(this.o0)
+        // console.log('this.t0')
+        // console.log(this.t0)
+        // console.log('this.c0')
+        // console.log(this.c0)
+
+        // console.log('arr')
+        // console.log(this.arr)
+        // console.log('-------------')
+        // console.log(this[`v${this.nbf}`])
+
+        // console.log(this.arr)
+        // console.log(row)
         // console.log(row['US_fans_percent'])
         // console.log(row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined)
         // console.log(parseFloat(row['US_fans_percent']))
         // console.log(this.q3 / 100)
         // console.log(operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)))
+
+        if (this.nbf) {
+          for (let index = 0; index < 45; index++) {
+            if (this[`v${index}`] !== '' && this[`v${index}`] !== null && this[`v${index}`] !== undefined) {
+              if (this[`o${index}`] && this[`c${index}`] && this[`t${index}`]) {
+                let countryName = this[`c${index}`]
+                let filterType = this[`t${index}`]
+                let operator = this[`o${index}`]
+                let value = this[`v${index}`]
+                switch (filterType) {
+                  case 'Likes':
+                    if (row[`${countryName}_Total`] !== null && row[`${countryName}_Total`] !== undefined && row[`${countryName}_Total`] !== '') {
+                      if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  case 'Likes Percent':
+                    if (row[`${countryName}_fans_percent`] !== null && row[`${countryName}_fans_percent`] !== undefined && row[`${countryName}_fans_percent`] !== '') {
+                      if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  case 'Talking About':
+                    if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined && row[`${countryName}_people_talking`] !== '') {
+                      if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  case 'Talking About Percent':
+                    if (row[`${countryName}_talking_percent`] !== null && row[`${countryName}_talking_percent`] !== undefined && row[`${countryName}_talking_percent`] !== '') {
+                      if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  default:
+                    break
+                }
+              }
+            }
+          }
+        }
+        /*
         if (this.qarr.length) {
-          for (var index = 0; index < this.qarr.length; index++) {
-            var countryFilter = this.qarr[index]
-            var countryName = countryFilter[4]
-            for (var i = 0; i < countryFilter.length - 1; i++) {
-              var value = countryFilter[i]
+          for (let index = 0; index < this.qarr.length; index++) {
+            let countryFilter = this.qarr[index]
+            let countryName = countryFilter[4]
+            for (let i = 0; i < countryFilter.length - 1; i++) {
+              let value = countryFilter[i]
               if (value !== null && value !== '' && value !== undefined) {
                 switch (i) {
                   case 0:
@@ -125,6 +372,137 @@ const v1 = new Vue({
             }
           }
         }
+        if (this.arr.length) {
+          for (let index = 0; index < this.arr.length; index++) {
+            let nfilter = this.arr[index]
+            let countryName = nfilter[3]
+            let filterType = nfilter[2]
+            let operator = nfilter[1]
+            let value = nfilter[0]
+            if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
+              switch (filterType) {
+                case 'Likes':
+                  if (row[`${countryName}_Total`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Likes Percent':
+                  if (row[`${countryName}_fans_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About':
+                  if (row[`${countryName}_people_talking`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About Percent':
+                  if (row[`${countryName}_talking_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                default:
+                  break
+              }
+            }
+          }
+        }
+
+        if (this.nbf) {
+          for (let index = 0; index < this.nbf; index++) {
+            let countryName = this[`c${index}`]
+            let filterType = this[`f${index}`]
+            let operator = this[`o${index}`]
+            let value = this[`v${index}`]
+            if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
+              switch (filterType) {
+                case 'Likes':
+                  if (row[`${countryName}_Total`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Likes Percent':
+                  if (row[`${countryName}_fans_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About':
+                  if (row[`${countryName}_people_talking`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About Percent':
+                  if (row[`${countryName}_talking_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                default:
+                  break
+              }
+            }
+          }
+        }
+
+        if (Object.keys(this.arr).length !== 0) {
+          for (let index = 0; index < Object.keys(this.arr).length; index++) {
+            let nfilter = this.arr[index]
+            let countryName = nfilter[3]
+            let filterType = nfilter[2]
+            let operator = nfilter[1]
+            let value = nfilter[0]
+            if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
+              switch (filterType) {
+                case 'Likes':
+                  if (row[`${countryName}_Total`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Likes Percent':
+                  if (row[`${countryName}_fans_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About':
+                  if (row[`${countryName}_people_talking`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About Percent':
+                  if (row[`${countryName}_talking_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                default:
+                  break
+              }
+            }
+          }
+        }
+        */
         if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4 || (this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) || this.q6) {
           return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
           (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
@@ -146,6 +524,53 @@ const v1 = new Vue({
         d.setTime(d.getTime() + (d.getTimezoneOffset() * 60 * 1000))
         // console.log(d.getTime())
         // console.log(d)
+
+        if (this.nbf) {
+          for (let index = 0; index < 45; index++) {
+            if (this[`v${index}`] !== '' && this[`v${index}`] !== null && this[`v${index}`] !== undefined) {
+              if (this[`o${index}`] && this[`c${index}`] && this[`t${index}`]) {
+                let countryName = this[`c${index}`]
+                let filterType = this[`t${index}`]
+                let operator = this[`o${index}`]
+                let value = this[`v${index}`]
+                switch (filterType) {
+                  case 'Likes':
+                    if (row[`${countryName}_Total`] !== null && row[`${countryName}_Total`] !== undefined && row[`${countryName}_Total`] !== '') {
+                      if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  case 'Likes Percent':
+                    if (row[`${countryName}_fans_percent`] !== null && row[`${countryName}_fans_percent`] !== undefined && row[`${countryName}_fans_percent`] !== '') {
+                      if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  case 'Talking About':
+                    if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined && row[`${countryName}_people_talking`] !== '') {
+                      if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  case 'Talking About Percent':
+                    if (row[`${countryName}_talking_percent`] !== null && row[`${countryName}_talking_percent`] !== undefined && row[`${countryName}_talking_percent`] !== '') {
+                      if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+                        return false
+                      }
+                    }
+                    break
+                  default:
+                    break
+                }
+              }
+            }
+          }
+        }
+
+        /*
         if (this.qarr.length) {
           for (var index = 0; index < this.qarr.length; index++) {
             var countryFilter = this.qarr[index]
@@ -189,6 +614,137 @@ const v1 = new Vue({
             }
           }
         }
+        if (this.arr.length) {
+          for (let index = 0; index < this.arr.length; index++) {
+            let nfilter = this.arr[index]
+            let countryName = nfilter[3]
+            let filterType = nfilter[2]
+            let operator = nfilter[1]
+            let value = nfilter[0]
+            if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
+              switch (filterType) {
+                case 'Likes':
+                  if (row[`${countryName}_Total`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Likes Percent':
+                  if (row[`${countryName}_fans_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About':
+                  if (row[`${countryName}_people_talking`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About Percent':
+                  if (row[`${countryName}_talking_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                default:
+                  break
+              }
+            }
+          }
+        }
+
+        if (this.nbf) {
+          for (let index = 0; index < this.nbf; index++) {
+            let countryName = this[`c${index}`]
+            let filterType = this[`f${index}`]
+            let operator = this[`o${index}`]
+            let value = this[`v${index}`]
+            if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
+              switch (filterType) {
+                case 'Likes':
+                  if (row[`${countryName}_Total`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Likes Percent':
+                  if (row[`${countryName}_fans_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About':
+                  if (row[`${countryName}_people_talking`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About Percent':
+                  if (row[`${countryName}_talking_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                default:
+                  break
+              }
+            }
+          }
+        }
+
+        if (Object.keys(this.arr).length !== 0) {
+          for (let index = 0; index < Object.keys(this.arr).length; index++) {
+            let nfilter = this.arr[index]
+            let countryName = nfilter[3]
+            let filterType = nfilter[2]
+            let operator = nfilter[1]
+            let value = nfilter[0]
+            if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
+              switch (filterType) {
+                case 'Likes':
+                  if (row[`${countryName}_Total`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Likes Percent':
+                  if (row[`${countryName}_fans_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About':
+                  if (row[`${countryName}_people_talking`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                case 'Talking About Percent':
+                  if (row[`${countryName}_talking_percent`]) {
+                    if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+                      return false
+                    }
+                  }
+                  break
+                default:
+                  break
+              }
+            }
+          }
+        }
+        */
         if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4 || (this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) || this.q6) {
           return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
           (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
