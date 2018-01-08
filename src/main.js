@@ -766,11 +766,15 @@ const v1 = new Vue({
 
 const v2 = new Vue({
   el: '#nav',
+  data: {
+    countryVals: []
+  },
   methods: {
     search: function () {
       // console.log('http://localhost:5000/search?token=' + this.$refs['token'] + '&search_term=' + this.$refs['search'])
       // console.log(document.getElementById('token').value);
-      this.$http.get('http://localhost:5000/search?token=' + document.getElementById('token').value + '&search_term=' + document.getElementById('search').value).then((dataSample) => {
+      // this.$http.get('http://localhost:5000/search?token=' + document.getElementById('token').value + '&search_term=' + document.getElementById('search').value).then((dataSample) => {
+      this.$http.post('http://localhost:5000/search', {token: document.getElementById('token').value, search_term: document.getElementById('search').value, countries: this.countryVals}).then((dataSample, status, request) => {
         console.log(dataSample.body)
         let body = JSON.parse(dataSample.body)
         let rows = []
@@ -833,8 +837,8 @@ const v2 = new Vue({
       if (ev.keyCode === 13) { this.search() }
     },
     postCountries: function () {
-      let countryVals = document.querySelectorAll('input[type=checkbox]:checked').map(box => box.value)
-      this.$http.post('http://localhost:5000/countries', {countries: countryVals}).then((data, status, request) => {}).catch((error) => { console.log(error) })
+      this.countryVals = document.querySelectorAll('input[type=checkbox]:checked').map(box => box.value)
+      this.$http.post('http://localhost:5000/countries', {countries: this.countryVals}).then((data, status, request) => {}).catch((error) => { console.log(error) })
     }
   },
   created () {

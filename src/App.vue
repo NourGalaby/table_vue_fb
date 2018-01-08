@@ -115,7 +115,7 @@
               <option value="TN">TN</option>
               <option value="TR">TR</option>
               <option value="TW">TW</option>
-              <option value="US">US</option>
+              <option value="US" selected>US</option>
               <option value="VE">VE</option>
               <option value="VN">VN</option>
             </select>
@@ -410,7 +410,7 @@ export default {
       // let x = this.$parent
       // with(this){return _c('div',[_c('label',{attrs:{"for":"noperator1"}},[_v("AE Likes")]),_c('select',{directives:[{name:"model",rawName:"v-model"}],staticClass:"form-control",attrs:{"name":"noperator1"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); =$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":">"}},[_v("greater than")]),_c('option',{attrs:{"value":"<"}},[_v("less than")]),_c('option',{attrs:{"value":"="}},[_v("equal to")])]),_c('input',{directives:[{name:"model",rawName:"v-model",value:($parent.v0),expression:"$parent.v0"}],staticClass:"form-control",attrs:{"type":"text","placeholder":"A positive number"},domProps:{"value":($parent.v0)},on:{"input":function($event){if($event.target.composing)return;$set($parent, "v0", $event.target.value)}}})])}
       // let res = Vue.default.compile(`<div><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><select v-model="$parent['o${si}']" class="form-control" name="noperator${this.$parent.nbf}"><option value=">">greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text"  v-model="$parent['v${si}']" class="form-control" placeholder="A positive number"></div>`)
-      let res = Vue.default.compile(`<div><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><select v-model="parent2.$parent['o${si}']" class="form-control" name="noperator${this.$parent.nbf}"><option value=">">greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text" v-model="parent2.$parent['v${si}']"  class="form-control" placeholder="A positive number"></div>`)
+      let res = Vue.default.compile(`<div><div  ><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><select v-model="parent2.$parent['o${si}']" class="form-control" name="noperator${this.$parent.nbf}"><option value=">">greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text" v-model="parent2.$parent['v${si}']"  class="form-control" placeholder="A positive number"></div><div id="added-filters" ></div></div>`)
       new Vue.default({
         el: '#added-filters',
         data: {
