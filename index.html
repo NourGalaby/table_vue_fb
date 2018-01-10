@@ -101,12 +101,12 @@
           <input type="checkbox" name="TNch" id="TNch" value="TN"><label for="TNch">TN</label>
           <input type="checkbox" name="TRch" id="TRch" value="TR"><label for="TRch">TR</label>
           <input type="checkbox" name="TWch" id="TWch" value="TW"><label for="TWch">TW</label>
-          <input type="checkbox" name="USch" id="USch" value="US"><label for="USch">US</label>
+          <input type="checkbox" name="USch" id="USch" value="US" checked><label for="USch">US</label>
           <input type="checkbox" name="VEch" id="VEch" value="VE"><label for="VEch">VE</label>
           <input type="checkbox" name="VNch" id="VNch" value="VN"><label for="VNch">VN</label>
         </div>
         <div class="modal-footer">
-          <button  id="cntry-btn" class="btn btn-primary" onclick="postCountries()" >Submit</button>
+          <button  id="cntry-btn" class="btn btn-primary" onclick="postCountries()" >Ok</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
       </div>
@@ -233,23 +233,23 @@ window.onclick = function(event) {
     }
 }
     function postCountries() {
-      let countryVals = [];
-      document.querySelectorAll('input[type=checkbox]:checked').forEach(function(box) {
-        countryVals.push(box.value);
-      }, this);
-      var http = new XMLHttpRequest();
-      var url = "http://localhost:5000/countries";
-      // var params = "lorem=ipsum&name=binny";
-      http.open("POST", url, true);
-      // Send the proper header information along with the request
-      http.setRequestHeader("Content-type", "text/javascript");
+      // let countryVals = [];
+      // document.querySelectorAll('input[type=checkbox]:checked').forEach(function(box) {
+      //   countryVals.push(box.value);
+      // }, this);
+      // var http = new XMLHttpRequest();
+      // var url = "http://localhost:5000/countries";
+      // // var params = "lorem=ipsum&name=binny";
+      // http.open("POST", url, true);
+      // // Send the proper header information along with the request
+      // http.setRequestHeader("Content-type", "text/javascript");
 
-      http.onreadystatechange = function() { // Call a function when the state changes.
-        if(http.readyState == 4 && http.status == 200) {
-          alert(http.responseText);
-        }
-      }
-      http.send(countryVals);
+      // http.onreadystatechange = function() { // Call a function when the state changes.
+      //   if(http.readyState == 4 && http.status == 200) {
+      //     alert(http.responseText);
+      //   }
+      // }
+      // http.send(countryVals);
       // this.$http.post('http://localhost:5000/countries', {countries: countryVals}).then((data, status, request) => {}).catch((error) => { console.log(error) })
     }
     </script>

@@ -294,28 +294,28 @@ const v1 = new Vue({
                 let value = this[`v${index}`]
                 switch (filterType) {
                   case 'Likes':
-                    if (row[`${countryName}_Total`] !== null && row[`${countryName}_Total`] !== undefined && row[`${countryName}_Total`] !== '') {
+                    if (row[`${countryName}_Total`] !== null && row[`${countryName}_Total`] !== undefined /* && row[`${countryName}_Total`] !== '' */) {
                       if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
                         return false
                       }
                     }
                     break
                   case 'Likes Percent':
-                    if (row[`${countryName}_fans_percent`] !== null && row[`${countryName}_fans_percent`] !== undefined && row[`${countryName}_fans_percent`] !== '') {
+                    if (row[`${countryName}_fans_percent`] !== null && row[`${countryName}_fans_percent`] !== undefined /* && row[`${countryName}_fans_percent`] !== '' */) {
                       if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
                         return false
                       }
                     }
                     break
                   case 'Talking About':
-                    if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined && row[`${countryName}_people_talking`] !== '') {
+                    if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined /* && row[`${countryName}_people_talking`] !== '' */) {
                       if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
                         return false
                       }
                     }
                     break
                   case 'Talking About Percent':
-                    if (row[`${countryName}_talking_percent`] !== null && row[`${countryName}_talking_percent`] !== undefined && row[`${countryName}_talking_percent`] !== '') {
+                    if (row[`${countryName}_talking_percent`] !== null && row[`${countryName}_talking_percent`] !== undefined /* && row[`${countryName}_talking_percent`] !== '' */) {
                       if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
                         return false
                       }
@@ -535,28 +535,28 @@ const v1 = new Vue({
                 let value = this[`v${index}`]
                 switch (filterType) {
                   case 'Likes':
-                    if (row[`${countryName}_Total`] !== null && row[`${countryName}_Total`] !== undefined && row[`${countryName}_Total`] !== '') {
+                    if (row[`${countryName}_Total`] !== null && row[`${countryName}_Total`] !== undefined /* && row[`${countryName}_Total`] !== '' */) {
                       if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
                         return false
                       }
                     }
                     break
                   case 'Likes Percent':
-                    if (row[`${countryName}_fans_percent`] !== null && row[`${countryName}_fans_percent`] !== undefined && row[`${countryName}_fans_percent`] !== '') {
+                    if (row[`${countryName}_fans_percent`] !== null && row[`${countryName}_fans_percent`] !== undefined /* && row[`${countryName}_fans_percent`] !== '' */) {
                       if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
                         return false
                       }
                     }
                     break
                   case 'Talking About':
-                    if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined && row[`${countryName}_people_talking`] !== '') {
+                    if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined /* && row[`${countryName}_people_talking`] !== '' */) {
                       if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
                         return false
                       }
                     }
                     break
                   case 'Talking About Percent':
-                    if (row[`${countryName}_talking_percent`] !== null && row[`${countryName}_talking_percent`] !== undefined && row[`${countryName}_talking_percent`] !== '') {
+                    if (row[`${countryName}_talking_percent`] !== null && row[`${countryName}_talking_percent`] !== undefined /* && row[`${countryName}_talking_percent`] !== '' */) {
                       if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
                         return false
                       }
@@ -767,7 +767,7 @@ const v1 = new Vue({
 const v2 = new Vue({
   el: '#nav',
   data: {
-    countryVals: []
+    countryVals: ['US']
   },
   methods: {
     search: function () {
@@ -838,67 +838,67 @@ const v2 = new Vue({
     },
     postCountries: function () {
       this.countryVals = document.querySelectorAll('input[type=checkbox]:checked').map(box => box.value)
-      this.$http.post('http://localhost:5000/countries', {countries: this.countryVals}).then((data, status, request) => {}).catch((error) => { console.log(error) })
+      // this.$http.post('http://localhost:5000/countries', {countries: this.countryVals}).then((data, status, request) => {}).catch((error) => { console.log(error) })
     }
   },
   created () {
-    this.$http.get('http://localhost:5000/sample').then((dataSample) => {
-      // console.log(dataSample);
-      let body = JSON.parse(dataSample.body)
-      let rows = []
-      let rows2 = []
-      let columns = []
-      for (var colName in body) {
-        if (body.hasOwnProperty(colName)) {
-          if (colName === 'picture') {
-            columns.push({label: 'Picture', field: colName, html: true})
-          } else if (colName === 'US percent') {
-            columns.push({label: 'US Percent', field: colName, /* filterable: true, */ type: 'percentage'})
-          } else if (colName === 'fans_count') {
-            columns.push({label: 'Fans Count', field: colName, /* filterable: true, */ type: 'number'})
-          } else if (colName === 'US_Total') {
-            columns.push({label: 'US Total Fans', field: colName, /* filterable: true, */ type: 'number'})
-          } else if (colName === 'last_post_date') {
-            columns.push({label: 'Last Post Date', field: colName, /* filterable: true, */ type: 'date', inputFormat: 'YYYY-MM-DD', outputFormat: 'MMM Do YY'})
-          } else if (colName === 'id') {
-            columns.push({label: 'Page Link', field: colName, html: true})
-          } else if (colName === 'name') {
-            columns.push({label: 'Page Name', field: colName, filterable: true})
-          } else if (colName.toLowerCase().indexOf('percent') > -1) {
-            columns.push({label: colName, field: colName, /* filterable: true, */ type: 'percentage'})
-          } else {
-            columns.push({label: colName, field: colName, filterable: true})
-          }
-          var col = body[colName]
-          for (var id in col) {
-            if (col.hasOwnProperty(id)) {
-              var val = col[id]
-              if (!rows[id]) {
-                rows[id] = {'id': id}
-                rows2[id] = {'id': id}
-              }
-              rows2[id][colName] = val
-              if (colName === 'picture') {
-                rows[id][colName] = '<img src ="' + val + '" />'
-              } else if (colName === 'id') {
-                rows[id][colName] = '<a href ="' + val + '" />' + val
-              } else {
-                rows[id][colName] = val
-              }
-            }
-          }
-        }
-      }
-      // console.log(rows);
-      v1.columns = columns
-      v1.rows = rows
-      v1.rows2 = rows2
-      // console.log(this.customFilter)
-    }).catch((err) => {
-      console.log(err)
-    })
-    // console.log(flag);
-    // console.log(this.flag);
+    // this.$http.get('http://localhost:5000/sample').then((dataSample) => {
+    //   // console.log(dataSample);
+    //   let body = JSON.parse(dataSample.body)
+    //   let rows = []
+    //   let rows2 = []
+    //   let columns = []
+    //   for (var colName in body) {
+    //     if (body.hasOwnProperty(colName)) {
+    //       if (colName === 'picture') {
+    //         columns.push({label: 'Picture', field: colName, html: true})
+    //       } else if (colName === 'US percent') {
+    //         columns.push({label: 'US Percent', field: colName, /* filterable: true, */ type: 'percentage'})
+    //       } else if (colName === 'fans_count') {
+    //         columns.push({label: 'Fans Count', field: colName, /* filterable: true, */ type: 'number'})
+    //       } else if (colName === 'US_Total') {
+    //         columns.push({label: 'US Total Fans', field: colName, /* filterable: true, */ type: 'number'})
+    //       } else if (colName === 'last_post_date') {
+    //         columns.push({label: 'Last Post Date', field: colName, /* filterable: true, */ type: 'date', inputFormat: 'YYYY-MM-DD', outputFormat: 'MMM Do YY'})
+    //       } else if (colName === 'id') {
+    //         columns.push({label: 'Page Link', field: colName, html: true})
+    //       } else if (colName === 'name') {
+    //         columns.push({label: 'Page Name', field: colName, filterable: true})
+    //       } else if (colName.toLowerCase().indexOf('percent') > -1) {
+    //         columns.push({label: colName, field: colName, /* filterable: true, */ type: 'percentage'})
+    //       } else {
+    //         columns.push({label: colName, field: colName, filterable: true})
+    //       }
+    //       var col = body[colName]
+    //       for (var id in col) {
+    //         if (col.hasOwnProperty(id)) {
+    //           var val = col[id]
+    //           if (!rows[id]) {
+    //             rows[id] = {'id': id}
+    //             rows2[id] = {'id': id}
+    //           }
+    //           rows2[id][colName] = val
+    //           if (colName === 'picture') {
+    //             rows[id][colName] = '<img src ="' + val + '" />'
+    //           } else if (colName === 'id') {
+    //             rows[id][colName] = '<a href ="' + val + '" />' + val
+    //           } else {
+    //             rows[id][colName] = val
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    //   // console.log(rows);
+    //   v1.columns = columns
+    //   v1.rows = rows
+    //   v1.rows2 = rows2
+    //   // console.log(this.customFilter)
+    // }).catch((err) => {
+    //   console.log(err)
+    // })
+    // // console.log(flag);
+    // // console.log(this.flag);
   }
 
 })
