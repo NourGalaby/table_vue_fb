@@ -815,6 +815,8 @@ const v2 = new Vue({
                   rows[id][colName] = '<img src ="' + val + '" />'
                 } else if (colName === 'id') {
                   rows[id][colName] = '<a href ="' + val + '" />' + val
+                } else if (colName.toLowerCase().indexOf('percent') > -1) {
+                  rows[id][colName] = val / 100
                 } else {
                   rows[id][colName] = val
                 }
