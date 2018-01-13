@@ -802,6 +802,11 @@ const v2 = new Vue({
               columns.push({label: colName, field: colName, filterable: true})
             }
             var col = body[colName]
+            const numCommas = (x) => {
+              var parts = x.toString().split('.')
+              parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+              return parts.join('.')
+            }
             for (var id in col) {
               if (col.hasOwnProperty(id)) {
                 var val = col[id]
@@ -817,6 +822,8 @@ const v2 = new Vue({
                   rows[id][colName] = '<a href ="' + val + '" />' + val
                 } else if (colName.toLowerCase().indexOf('percent') > -1) {
                   rows[id][colName] = val / 100
+                } else if (colName.toLowerCase().indexOf('total') > -1 || colName.toLowerCase().indexOf('count') > -1) {
+                  rows[id][colName] = numCommas(val)
                 } else {
                   rows[id][colName] = val
                 }
