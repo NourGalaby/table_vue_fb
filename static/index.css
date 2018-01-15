@@ -30,7 +30,7 @@ body {
   background-color: #e9e9e9;
   padding-right: 1%;
   padding-left: 1%;
-  margin-top: 20vh;
+  margin-top: 24vh;
   /* margin: 0 auto; */
 
   /* height: 90vh; */
@@ -140,6 +140,7 @@ body {
 /* Style the accordion panel. Note: hidden by default */
 .infopanel {
   padding: 0 18px;
+  height: 50%;
   background-color: #ddd;
   display: none;
 }
@@ -154,7 +155,7 @@ body {
     border: 1px solid #ddd; /* Gray border */
     border-radius: 4px;  /* Rounded border */
     padding: 5px; /* Some padding */
-    width: 650px; /* Set a small width */
+    width: 400px; /* Set a small width */
 }
 
 /* Add a hover effect (blue shadow) */
