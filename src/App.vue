@@ -355,7 +355,7 @@ export default {
       document.getElementById('fltrdiv').insertBefore(filterDiv3, document.getElementById('add-filter'))
     },
     ch: function (ev) {
-      console.log('ch')
+      // console.log('ch')
       this.$parent.$set(this.$parent.arr[this.$parent.nbf], 0, ev.target.value)
     },
     addFilter: function () {

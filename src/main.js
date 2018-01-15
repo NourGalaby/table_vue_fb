@@ -823,7 +823,7 @@ const v2 = new Vue({
                 } else if (colName.toLowerCase().indexOf('percent') > -1) {
                   rows[id][colName] = val / 100
                 } else if (colName.toLowerCase().indexOf('total') > -1 || colName.toLowerCase().indexOf('count') > -1) {
-                  rows[id][colName] = numCommas(val)
+                  rows[id][colName] = val && numCommas(val)
                 } else {
                   rows[id][colName] = val
                 }
