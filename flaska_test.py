@@ -3,6 +3,7 @@ import pickle
 from flask import  Flask , request , jsonify
 from flask_cors import CORS
 from flask_vue import Vue
+import json 
 
 import pandas as pd
 TESTING = True
@@ -15,12 +16,6 @@ app = Flask(__name__)
 CORS(app)
 Vue(app)
 
-if TESTING:
-    #data= pickle.load(file=open( "travel_search_results.pkl",mode='rb'))
-    #data= pickle.load(file=open( "temp_scrapped.pkl"))
-    #take a sample of the date ( 50 )
- #   data=data[:100]
-    pass
 
 
 @app.route('/')
@@ -29,35 +24,42 @@ def api_root():
     return render_template("index.html", title = 'Projects') 
 
 
-@app.route('/search')
-def search( method=['GET']):
-    token = request.args.get('token')
-    search_term = request.args.get('search_term')
-    countries=['US'] #this needs to be updates based on selection from front end
-    if TESTING:
-        #d=data #mocking search
-        time.sleep(0.2)
-        print("20%")
-        # time.sleep(0.2)
-        print("30%")
-        #time.sleep(0.2)
-        print("60%")
-        time.sleep(0.2)
-        print("90%")
-        time.sleep(0.2)
-        print("Done")
-        data= pickle.load(file=open( "temp_scrapped.pkl"))
-    else:
-        data = call_search(search_term,countries,token) #
-    d =  data.to_json()
-    return jsonify(d)
+@app.route('/search' , methods=['POST'])
+def search( ):
+    if request.method == 'POST':
+		print ("POST HERE")
+		data= json.loads(request.data)
+		print 
+		print data['countries']
+		print data['search_term']
+		#print request.data
+		try:
+			token = data['token']
+			print "token = " + token
+		except KeyError:
+			pass
+		search_term = data['search_term']
+		countries= data['countries']		#this needs to be updates based on selection from front end
+		print countries
+		if TESTING:
+			#d=data #mocking search
+			time.sleep(0.2)
+			print("20%")
+			# time.sleep(0.2)
+			print("30%")
+			#time.sleep(0.2)
+			print("60%")
+			time.sleep(0.2)
+			print("90%")
+			time.sleep(0.2)
+			print("Done")
+			data= pickle.load(file=open( "dahab_search_results.pkl"))
+		else:
+			data = call_search(search_term,countries,token) #
+		d =  data.to_json()
+		return jsonify(d)
+	#return "ERROR"
 
-
-@app.route('/sample')
-def api_dataframe():
-    # data= get_df()
-    d=  data.to_json()
-    return jsonify(d)
 
 
 if __name__ == '__main__':
