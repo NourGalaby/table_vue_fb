@@ -2,13 +2,14 @@
   <div id="app">
     <!-- <img src="./assets/fb-art.png">
     <br> -->
-    <nav class="w3-sidebar w3-collapse w3-light-grey w3-animate-left" style="z-index:3;width:300px;height:60%;overflow:hidden;" id="mySidebar">
+    <!-- w3-collapse -->
+    <nav class="w3-sidebar  w3-light-grey w3-animate-left" style="z-index:3;width:300px;height:auto;max-height:95%;overflow:hidden;position: absolute !important;" id="mySidebar">
       <div style="height:100%" id="fltrprnt">
         <!-- v-on:click="tggleacc" -->
         <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" >Advanced Filters</button>
         <!-- style="height:350px;margin:auto;" -->
         <div class="panel w3-light-grey" id="fltrdiv">
-          <div class="filterbar bg-secondary" id="filter1">
+          <div class="filterbar bg-light" id="filter1">
             <!-- <label for="">Filter by : </label> -->
             <!-- <select v-model="$parent.f"> -->
               <label for="operator1">Fans Count</label>
@@ -26,7 +27,7 @@
             </div>
             </form>
           </div>
-          <div class="filterbar bg-secondary" id="filter4">
+          <div class="filterbar bg-light" id="filter4">
 
             <label for="operator4">Last Post Date</label>
             <form class="form-inline" > <div style="float:none;margin: 0 auto;">
@@ -425,7 +426,7 @@ export default {
       // let x = this.$parent
       // with(this){return _c('div',[_c('label',{attrs:{"for":"noperator1"}},[_v("AE Likes")]),_c('select',{directives:[{name:"model",rawName:"v-model"}],staticClass:"form-control",attrs:{"name":"noperator1"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); =$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":">"}},[_v("greater than")]),_c('option',{attrs:{"value":"<"}},[_v("less than")]),_c('option',{attrs:{"value":"="}},[_v("equal to")])]),_c('input',{directives:[{name:"model",rawName:"v-model",value:($parent.v0),expression:"$parent.v0"}],staticClass:"form-control",attrs:{"type":"text","placeholder":"A positive number"},domProps:{"value":($parent.v0)},on:{"input":function($event){if($event.target.composing)return;$set($parent, "v0", $event.target.value)}}})])}
       // let res = Vue.default.compile(`<div><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><select v-model="$parent['o${si}']" class="form-control" name="noperator${this.$parent.nbf}"><option value=">">greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text"  v-model="$parent['v${si}']" class="form-control" placeholder="A positive number"></div>`)
-      let res = Vue.default.compile(`<div><div class="bg-info" ><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><form class="form-inline" > <div style="float:none;margin: 0 auto;"><select v-model="parent2.$parent['o${si}']" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" style="font-size:10px;" name="noperator${this.$parent.nbf}"><option value=">" selected>greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text" v-model="parent2.$parent['v${si}']" style="font-size:10px;" class="form-control mb-1 mr-sm-1 mb-sm-1 " placeholder="A positive number"></div></form></div><div id="added-filters" ></div></div>`)
+      let res = Vue.default.compile(`<div><div class="bg-light" ><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><form class="form-inline" > <div style="float:none;margin: 0 auto;"><select v-model="parent2.$parent['o${si}']" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" style="font-size:10px;" name="noperator${this.$parent.nbf}"><option selected="selected" value=">" >greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text" v-model="parent2.$parent['v${si}']" style="font-size:10px;" class="form-control mb-1 mr-sm-1 mb-sm-1 " placeholder="A positive number"></div></form></div><div id="added-filters" ></div></div>`)
       new Vue.default({
         el: '#added-filters',
         data: {

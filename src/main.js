@@ -284,6 +284,15 @@ const v1 = new Vue({
         // console.log(this.q3 / 100)
         // console.log(operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)))
 
+        const unComma = (commad) => {
+          // console.log(commad)
+          // console.log(typeof commad)
+          if (commad && typeof commad === 'string') {
+            commad = commad.replace(/,/g, '')
+            return parseInt(commad, 10)
+          }
+        }
+
         if (this.nbf) {
           for (let index = 0; index < 45; index++) {
             if (this[`v${index}`] !== '' && this[`v${index}`] !== null && this[`v${index}`] !== undefined) {
@@ -295,7 +304,7 @@ const v1 = new Vue({
                 switch (filterType) {
                   case 'Likes':
                     if (row[`${countryName}_Total`] !== null && row[`${countryName}_Total`] !== undefined /* && row[`${countryName}_Total`] !== '' */) {
-                      if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+                      if (!(operatorFromString[operator](unComma(row[`${countryName}_Total`]), value))) {
                         return false
                       }
                     }
@@ -309,7 +318,7 @@ const v1 = new Vue({
                     break
                   case 'Talking About':
                     if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined /* && row[`${countryName}_people_talking`] !== '' */) {
-                      if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+                      if (!(operatorFromString[operator](unComma(row[`${countryName}_people_talking`]), value))) {
                         return false
                       }
                     }
@@ -504,9 +513,9 @@ const v1 = new Vue({
         }
         */
         if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4 || (this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) || this.q6) {
-          return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
-          (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
-          (this.q6 ? operatorFromString[this.op6](row['US_people_talking'], this.q6) : true) &&
+          return (this.q1 ? operatorFromString[this.op1](unComma(row['fans_count']), this.q1) : true) &&
+          (this.q2 ? operatorFromString[this.op2](unComma(row['US_Total']), this.q2) : true) &&
+          (this.q6 ? operatorFromString[this.op6](unComma(row['US_people_talking']), this.q6) : true) &&
           ((row['US percent'] !== null && row['US percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : ((row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US_fans_percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : (!((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0))))) &&
           (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true) &&
           ((this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) ? operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)) : true)
@@ -525,6 +534,13 @@ const v1 = new Vue({
         // console.log(d.getTime())
         // console.log(d)
 
+        const unComma = (commad) => {
+          if (commad && typeof commad === 'string') {
+            commad = commad.replace(/,/g, '')
+            return parseInt(commad, 10)
+          }
+        }
+
         if (this.nbf) {
           for (let index = 0; index < 45; index++) {
             if (this[`v${index}`] !== '' && this[`v${index}`] !== null && this[`v${index}`] !== undefined) {
@@ -536,7 +552,7 @@ const v1 = new Vue({
                 switch (filterType) {
                   case 'Likes':
                     if (row[`${countryName}_Total`] !== null && row[`${countryName}_Total`] !== undefined /* && row[`${countryName}_Total`] !== '' */) {
-                      if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+                      if (!(operatorFromString[operator](unComma(row[`${countryName}_Total`]), value))) {
                         return false
                       }
                     }
@@ -550,7 +566,7 @@ const v1 = new Vue({
                     break
                   case 'Talking About':
                     if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined /* && row[`${countryName}_people_talking`] !== '' */) {
-                      if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+                      if (!(operatorFromString[operator](unComma(row[`${countryName}_people_talking`]), value))) {
                         return false
                       }
                     }
@@ -746,9 +762,9 @@ const v1 = new Vue({
         }
         */
         if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4 || (this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) || this.q6) {
-          return (this.q1 ? operatorFromString[this.op1](row['fans_count'], this.q1) : true) &&
-          (this.q2 ? operatorFromString[this.op2](row['US_Total'], this.q2) : true) &&
-          (this.q6 ? operatorFromString[this.op6](row['US_people_talking'], this.q6) : true) &&
+          return (this.q1 ? operatorFromString[this.op1](unComma(row['fans_count']), this.q1) : true) &&
+          (this.q2 ? operatorFromString[this.op2](unComma(row['US_Total']), this.q2) : true) &&
+          (this.q6 ? operatorFromString[this.op6](unComma(row['US_people_talking']), this.q6) : true) &&
           ((row['US percent'] !== null && row['US percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : ((row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US_fans_percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : (!((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0))))) &&
           (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true) &&
           ((this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) ? operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)) : true)
@@ -810,7 +826,9 @@ const v2 = new Vue({
             for (var id in col) {
               if (col.hasOwnProperty(id)) {
                 var val = col[id]
-
+                if (val === null) {
+                  val = ''
+                }
                 if (!rows[id]) {
                   rows[id] = {'id': id}
                   rows2[id] = {'id': id}
@@ -837,6 +855,7 @@ const v2 = new Vue({
         v1.columns = columns
         // v1.flag = true
         // console.log(DT)
+        setTimeout(() => { document.getElementById('app').scrollIntoView() }, 400)
       }).catch((err) => {
         console.log(err)
       })
