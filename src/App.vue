@@ -8,7 +8,7 @@
         <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" >Advanced Filters</button>
         <!-- style="height:350px;margin:auto;" -->
         <div class="panel w3-light-grey" id="fltrdiv">
-          <div class="filterbar w3-light-grey" id="filter1">
+          <div class="filterbar bg-secondary" id="filter1">
             <!-- <label for="">Filter by : </label> -->
             <!-- <select v-model="$parent.f"> -->
               <label for="operator1">Fans Count</label>
@@ -16,21 +16,28 @@
               <!-- <option value="US_Total">US Total Fans</option> -->
             
             <!-- </select> -->
-            <select v-model="$parent.op1" class="form-control" name="operator1">
+            <form class="form-inline" > <div style="float:none;margin: 0 auto;">
+            <select v-model="$parent.op1" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" style="font-size:10px;" name="operator1">
               <option value=">">greater than</option>
               <option value="<">less than</option>
               <option value="=">equal to</option>
             </select>
-            <input type="number" v-model="$parent.q1" class="form-control" placeholder="A positive number">
+            <input type="number" v-model="$parent.q1" class="form-control mb-1 mr-sm-1 mb-sm-1 " style="font-size:10px;" placeholder="A positive number">
+            </div>
+            </form>
           </div>
-          <div class="filterbar w3-light-grey" id="filter4">
+          <div class="filterbar bg-secondary" id="filter4">
+
             <label for="operator4">Last Post Date</label>
-            <select v-model="$parent.op4" class="form-control" name="operator4">
+            <form class="form-inline" > <div style="float:none;margin: 0 auto;">
+            <select v-model="$parent.op4" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" name="operator4" style="font-size:10px;">
               <option value=">">greater than</option>
               <option value="<">less than</option>
               <option value="=">equal to</option>
             </select>
-            <input type="date" v-model="$parent.q4" class="form-control" placeholder="Date">
+            <input type="date" v-model="$parent.q4" class="form-control mb-1 mr-sm-1 mb-sm-1" placeholder="Date" style="font-size:10px;">
+            </div>
+            </form>
           </div>
           <!-- <div class="filterbar w3-light-grey" id="filter2">
             <label for="operator2">US Total Fans</label>
@@ -69,10 +76,11 @@
             </select>
             <input type="text" v-model="$parent.q5" class="form-control" placeholder="e.g. 50.5">
           </div> -->
-          <div id="added-filters"></div>
-          <div id="add-filter">
+          <div id="add-filter" class="bg-secondary" style="margin-top:2px;" >
+            
             <label for="operator4">Custom filter</label>
-            <select  class="form-control" name="countries" id="dc-filters">
+            <form class="form-inline" > <div style="float:none;margin: 0 auto;">
+            <select  class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" name="countries" id="dc-filters" style="font-size:10px;">
               <option value="AE">AE</option> 
               <option value="AR">AR</option>
               <option value="AU">AU</option>
@@ -119,14 +127,20 @@
               <option value="VE">VE</option>
               <option value="VN">VN</option>
             </select>
-            <select class="form-control" name="type" id="dc-filter-type">
+            <select class="form-control mb-1 mr-sm-1 mb-sm-1 " name="type" id="dc-filter-type" style="font-size:10px;">
               <option value="Likes">Likes</option> 
               <option value="Likes Percent">Likes Percent</option>
               <option value="Talking About">Talking About</option>
               <option value="Talking About Percent">Talking About Percent</option>
             </select>
-            <button v-on:click="addFilter">Add Filters</button>
+            
+            </div>
+            
+            </form>
+            <button v-on:click="addFilter" class="btn w3-dark-grey mb-sm-1  " style="font-size:10px;">Add Filter</button>
           </div>
+          <div id="added-filters"></div>
+          
           <div class="btn-right">
             <button  id="csv-btn" class="btn w3-dark-grey" v-on:click="csv">Save as CSV</button>
           </div>
@@ -385,6 +399,7 @@ export default {
       let opGreater = document.createElement('option')
       opGreater.text = 'greater than'
       opGreater.setAttribute('value', '>')
+      opGreater.setAttribute('selected', 'true')
       let opLess = document.createElement('option')
       opLess.text = 'less than'
       opLess.setAttribute('value', '<')
@@ -410,7 +425,7 @@ export default {
       // let x = this.$parent
       // with(this){return _c('div',[_c('label',{attrs:{"for":"noperator1"}},[_v("AE Likes")]),_c('select',{directives:[{name:"model",rawName:"v-model"}],staticClass:"form-control",attrs:{"name":"noperator1"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); =$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":">"}},[_v("greater than")]),_c('option',{attrs:{"value":"<"}},[_v("less than")]),_c('option',{attrs:{"value":"="}},[_v("equal to")])]),_c('input',{directives:[{name:"model",rawName:"v-model",value:($parent.v0),expression:"$parent.v0"}],staticClass:"form-control",attrs:{"type":"text","placeholder":"A positive number"},domProps:{"value":($parent.v0)},on:{"input":function($event){if($event.target.composing)return;$set($parent, "v0", $event.target.value)}}})])}
       // let res = Vue.default.compile(`<div><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><select v-model="$parent['o${si}']" class="form-control" name="noperator${this.$parent.nbf}"><option value=">">greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text"  v-model="$parent['v${si}']" class="form-control" placeholder="A positive number"></div>`)
-      let res = Vue.default.compile(`<div><div  ><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><select v-model="parent2.$parent['o${si}']" class="form-control" name="noperator${this.$parent.nbf}"><option value=">">greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text" v-model="parent2.$parent['v${si}']"  class="form-control" placeholder="A positive number"></div><div id="added-filters" ></div></div>`)
+      let res = Vue.default.compile(`<div><div class="bg-info" ><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><form class="form-inline" > <div style="float:none;margin: 0 auto;"><select v-model="parent2.$parent['o${si}']" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" style="font-size:10px;" name="noperator${this.$parent.nbf}"><option value=">" selected>greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text" v-model="parent2.$parent['v${si}']" style="font-size:10px;" class="form-control mb-1 mr-sm-1 mb-sm-1 " placeholder="A positive number"></div></form></div><div id="added-filters" ></div></div>`)
       new Vue.default({
         el: '#added-filters',
         data: {
@@ -502,16 +517,16 @@ export default {
     
     padding: 2px;
     border: none;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    margin-left: 5px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    /* margin-left: 5px; */
     padding: 4px 5px;
     
     font-size: smaller;
   }
   .filterbar label {
     width: 100%;
-    margin-top: 16px;
+    margin-top: 5px;
   }
   .btn-right {
     float: right;
