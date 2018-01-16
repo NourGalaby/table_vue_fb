@@ -852,7 +852,7 @@ const v1 = new Vue({
                       break
                     case 'Likes Percent':
                       if (row[`${countryName}_fans_percent`] !== null && row[`${countryName}_fans_percent`] !== undefined /* && row[`${countryName}_fans_percent`] !== '' */) {
-                        if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+                        if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], (value / 100)))) {
                           return false
                         }
                       }
@@ -866,7 +866,7 @@ const v1 = new Vue({
                       break
                     case 'Talking About Percent':
                       if (row[`${countryName}_talking_percent`] !== null && row[`${countryName}_talking_percent`] !== undefined /* && row[`${countryName}_talking_percent`] !== '' */) {
-                        if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+                        if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], (value / 100)))) {
                           return false
                         }
                       }
@@ -1105,7 +1105,7 @@ const v1 = new Vue({
                       break
                     case 'Likes Percent':
                       if (row[`${countryName}_fans_percent`] !== null && row[`${countryName}_fans_percent`] !== undefined /* && row[`${countryName}_fans_percent`] !== '' */) {
-                        if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+                        if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], (value / 100)))) {
                           return false
                         }
                       }
@@ -1119,7 +1119,7 @@ const v1 = new Vue({
                       break
                     case 'Talking About Percent':
                       if (row[`${countryName}_talking_percent`] !== null && row[`${countryName}_talking_percent`] !== undefined /* && row[`${countryName}_talking_percent`] !== '' */) {
-                        if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+                        if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], (value / 100)))) {
                           return false
                         }
                       }
