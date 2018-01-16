@@ -140,7 +140,7 @@
             </form>
             <button v-on:click="addFilter" class="btn w3-dark-grey mb-sm-1  " style="font-size:10px;">Add Filter</button>
           </div>
-          <div id="added-filters"></div>
+          <div id="added-filters0"></div>
           
           <div class="btn-right">
             <button  id="csv-btn" class="btn w3-dark-grey" v-on:click="csv">Save as CSV</button>
@@ -364,6 +364,7 @@ export default {
       const filterCountry = document.getElementById('dc-filters').options[document.getElementById('dc-filters').selectedIndex].value
       const filterType = document.getElementById('dc-filter-type').options[document.getElementById('dc-filter-type').selectedIndex].value
       const si = document.getElementById('dc-filters').selectedIndex
+      const sc = document.getElementById('dc-filter-type').selectedIndex
       // this.$parent.$set(this.$parent.arr, this.$parent.nbf, {})
       // this.$parent.$set(this.$parent.arr[this.$parent.nbf], 0, null)
       // this.$parent.$set(this.$parent.arr[this.$parent.nbf], 1, null)
@@ -381,10 +382,10 @@ export default {
       // this.$parent[`f${this.$parent.nbf}`] = filterType
       // this.$parent[`c${this.$parent.nbf}`] = filterCountry
 
-      this.$parent[`v${si}`] = ''
-      this.$parent[`o${si}`] = ''
-      this.$parent[`t${si}`] = filterType
-      this.$parent[`c${si}`] = filterCountry
+      this.$parent[`v${si}_${sc}`] = ''
+      this.$parent[`o${si}_${sc}`] = ''
+      this.$parent[`t${si}_${sc}`] = filterType
+      this.$parent[`c${si}_${sc}`] = filterCountry
       let lbl = document.createElement('LABEL')
       let slct = document.createElement('SELECT')
       let inpt = document.createElement('INPUT')
@@ -426,9 +427,9 @@ export default {
       // let x = this.$parent
       // with(this){return _c('div',[_c('label',{attrs:{"for":"noperator1"}},[_v("AE Likes")]),_c('select',{directives:[{name:"model",rawName:"v-model"}],staticClass:"form-control",attrs:{"name":"noperator1"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); =$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":">"}},[_v("greater than")]),_c('option',{attrs:{"value":"<"}},[_v("less than")]),_c('option',{attrs:{"value":"="}},[_v("equal to")])]),_c('input',{directives:[{name:"model",rawName:"v-model",value:($parent.v0),expression:"$parent.v0"}],staticClass:"form-control",attrs:{"type":"text","placeholder":"A positive number"},domProps:{"value":($parent.v0)},on:{"input":function($event){if($event.target.composing)return;$set($parent, "v0", $event.target.value)}}})])}
       // let res = Vue.default.compile(`<div><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><select v-model="$parent['o${si}']" class="form-control" name="noperator${this.$parent.nbf}"><option value=">">greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text"  v-model="$parent['v${si}']" class="form-control" placeholder="A positive number"></div>`)
-      let res = Vue.default.compile(`<div><div class="bg-light" ><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><form class="form-inline" > <div style="float:none;margin: 0 auto;"><select v-model="parent2.$parent['o${si}']" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" style="font-size:10px;" name="noperator${this.$parent.nbf}"><option selected="selected" value=">" >greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text" v-model="parent2.$parent['v${si}']" style="font-size:10px;" class="form-control mb-1 mr-sm-1 mb-sm-1 " placeholder="A positive number"></div></form></div><div id="added-filters" ></div></div>`)
+      let res = Vue.default.compile(`<div><div class="bg-light" ><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><form class="form-inline" > <div style="float:none;margin: 0 auto;"><select v-model="parent2.$parent['o${si}_${sc}']" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" style="font-size:10px;" name="noperator${this.$parent.nbf}"><option selected="selected" value=">" >greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="number" v-model="parent2.$parent['v${si}_${sc}']" style="font-size:10px;" class="form-control mb-1 mr-sm-1 mb-sm-1 " placeholder="A positive number"></div></form></div><div id="added-filters${this.$parent.nbf + 1}" ></div></div>`)
       new Vue.default({
-        el: '#added-filters',
+        el: `#added-filters${this.$parent.nbf}`,
         data: {
           parent2: self
         },
