@@ -1334,6 +1334,10 @@ const v2 = new Vue({
   },
   methods: {
     search: function () {
+      this.countryVals = []
+      document.querySelectorAll('input[type=checkbox]:checked').forEach((box) => {
+        this.countryVals.push(box.value)
+      }, this)
       // console.log('http://localhost:5000/search?token=' + this.$refs['token'] + '&search_term=' + this.$refs['search'])
       // console.log(document.getElementById('token').value);
       // this.$http.get('http://localhost:5000/search?token=' + document.getElementById('token').value + '&search_term=' + document.getElementById('search').value).then((dataSample) => {
