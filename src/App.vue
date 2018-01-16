@@ -549,8 +549,10 @@ export default {
 [type="checkbox"]:not(:checked) + label,
 [type="checkbox"]:checked + label {
   position: relative;
-  padding-left: 1.95em;
+  padding-left: 1.30em;
+  padding-right: 1.0em;
   cursor: pointer;
+  font-size: smaller;
 }
 
 /* checkbox aspect */
