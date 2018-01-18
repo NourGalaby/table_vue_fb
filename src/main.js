@@ -787,8 +787,8 @@ const v1 = new Vue({
         '<': function (x, y) { return x < y },
         '=': function (x, y) { return x == y }
       }
-      console.log('this of customFilter')
-      console.log(this)
+      // console.log('this of customFilter')
+      // console.log(this)
       // this.rows2 = this.csvFilter()
       // rows3 = this.csvFilter()
       // console.log('rows3')
@@ -1094,6 +1094,7 @@ const v1 = new Vue({
             commad = commad.replace(/,/g, '')
             return parseInt(commad, 10)
           }
+          return commad
         }
 
         if (this.nbf) {
@@ -1126,6 +1127,7 @@ const v1 = new Vue({
                     case 'Talking About':
                       if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined /* && row[`${countryName}_people_talking`] !== '' */) {
                         if (!(operatorFromString[operator](unComma(row[`${countryName}_people_talking`]), value))) {
+                          // console.log('value = ' + value + 'row[countryName_people_talking]: ' + row[`${countryName}_people_talking`] + 'unComma(row[countryName_people_talking]): ' + unComma(row[`${countryName}_people_talking`]))
                           return false
                         }
                       }
@@ -1334,297 +1336,297 @@ const v1 = new Vue({
     }
   },
   methods: {
-    csvFilter () {
-      const operatorFromString = {
-        '>': function (x, y) { return x > y },
-        '<': function (x, y) { return x < y },
-        '=': function (x, y) { return x == y }
-      }
-      console.log('this of csvFilter')
-      console.log(this)
-      console.log('this.rows2 before')
-      console.log(this.rows2)
+    // csvFilter () {
+    //   const operatorFromString = {
+    //     '>': function (x, y) { return x > y },
+    //     '<': function (x, y) { return x < y },
+    //     '=': function (x, y) { return x == y }
+    //   }
+    //   // console.log('this of csvFilter')
+    //   // console.log(this)
+    //   // console.log('this.rows2 before')
+    //   // console.log(this.rows2)
 
-      return this.rows2.filter((row) => {
-        // return this.rows2.filter((row) => {
-        let qd = new Date(this.q4)
-        qd.setHours(0, 0, 0, 0)
-        qd.setTime(qd.getTime() + (qd.getTimezoneOffset() * 60 * 1000))
-        // console.log(qd.getTime())
-        // console.log(qd)
-        let d = new Date(row['last_post_date'])
-        d.setHours(0, 0, 0, 0)
-        d.setTime(d.getTime() + (d.getTimezoneOffset() * 60 * 1000))
-        // console.log(d.getTime())
-        // console.log(d)
-        // console.log(row['US percent'])
+    //   return this.rows2.filter((row) => {
+    //     // return this.rows2.filter((row) => {
+    //     let qd = new Date(this.q4)
+    //     qd.setHours(0, 0, 0, 0)
+    //     qd.setTime(qd.getTime() + (qd.getTimezoneOffset() * 60 * 1000))
+    //     // console.log(qd.getTime())
+    //     // console.log(qd)
+    //     let d = new Date(row['last_post_date'])
+    //     d.setHours(0, 0, 0, 0)
+    //     d.setTime(d.getTime() + (d.getTimezoneOffset() * 60 * 1000))
+    //     // console.log(d.getTime())
+    //     // console.log(d)
+    //     // console.log(row['US percent'])
 
-        // console.log('this')
-        // console.log(this)
-        // console.log('this.v0')
-        // console.log(this.v0)
-        // console.log('this.o0')
-        // console.log(this.o0)
-        // console.log('this.t0')
-        // console.log(this.t0)
-        // console.log('this.c0')
-        // console.log(this.c0)
+    //     // console.log('this')
+    //     // console.log(this)
+    //     // console.log('this.v0')
+    //     // console.log(this.v0)
+    //     // console.log('this.o0')
+    //     // console.log(this.o0)
+    //     // console.log('this.t0')
+    //     // console.log(this.t0)
+    //     // console.log('this.c0')
+    //     // console.log(this.c0)
 
-        // console.log('arr')
-        // console.log(this.arr)
-        // console.log('-------------')
-        // console.log(this[`v${this.nbf}`])
+    //     // console.log('arr')
+    //     // console.log(this.arr)
+    //     // console.log('-------------')
+    //     // console.log(this[`v${this.nbf}`])
 
-        // console.log(this.arr)
-        // console.log(row)
-        // console.log(row['US_fans_percent'])
-        // console.log(row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined)
-        // console.log(parseFloat(row['US_fans_percent']))
-        // console.log(this.q3 / 100)
-        // console.log(operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)))
+    //     // console.log(this.arr)
+    //     // console.log(row)
+    //     // console.log(row['US_fans_percent'])
+    //     // console.log(row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined)
+    //     // console.log(parseFloat(row['US_fans_percent']))
+    //     // console.log(this.q3 / 100)
+    //     // console.log(operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)))
 
-        const unComma = (commad) => {
-          // console.log(commad)
-          // console.log(typeof commad)
-          if (commad && typeof commad === 'string') {
-            commad = commad.replace(/,/g, '')
-            return parseInt(commad, 10)
-          }
-        }
-        console.log('this.nbf')
-        console.log(this.nbf)
-        if (this.nbf) {
-          for (var findex = 0; findex < 4; findex++) {
-            for (let index = 0; index < 45; index++) {
-              if (this[`v${index}_${findex}`] !== '' && this[`v${index}_${findex}`] !== null && this[`v${index}_${findex}`] !== undefined) {
-                if (this[`o${index}_${findex}`] && this[`c${index}_${findex}`] && this[`t${index}_${findex}`]) {
-                  let countryName = this[`c${index}_${findex}`]
-                  let filterType = this[`t${index}_${findex}`]
-                  let operator = this[`o${index}_${findex}`]
-                  let value = this[`v${index}_${findex}`]
-                  switch (filterType) {
-                    case 'Likes':
-                      if (row[`${countryName}_Total`] !== null && row[`${countryName}_Total`] !== undefined /* && row[`${countryName}_Total`] !== '' */) {
-                        if (!(operatorFromString[operator](unComma(row[`${countryName}_Total`]), value))) {
-                          return false
-                        }
-                      }
-                      break
-                    case 'Likes Percent':
-                      if (row[`${countryName}_fans_percent`] !== null && row[`${countryName}_fans_percent`] !== undefined /* && row[`${countryName}_fans_percent`] !== '' */) {
-                        if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], (value / 100)))) {
-                          return false
-                        }
-                      }
-                      break
-                    case 'Talking About':
-                      if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined /* && row[`${countryName}_people_talking`] !== '' */) {
-                        if (!(operatorFromString[operator](unComma(row[`${countryName}_people_talking`]), value))) {
-                          return false
-                        }
-                      }
-                      break
-                    case 'Talking About Percent':
-                      if (row[`${countryName}_talking_percent`] !== null && row[`${countryName}_talking_percent`] !== undefined /* && row[`${countryName}_talking_percent`] !== '' */) {
-                        if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], (value / 100)))) {
-                          return false
-                        }
-                      }
-                      break
-                    default:
-                      break
-                  }
-                }
-              }
-            }
-          }
-        }
-        /*
-        if (this.qarr.length) {
-          for (let index = 0; index < this.qarr.length; index++) {
-            let countryFilter = this.qarr[index]
-            let countryName = countryFilter[4]
-            for (let i = 0; i < countryFilter.length - 1; i++) {
-              let value = countryFilter[i]
-              if (value !== null && value !== '' && value !== undefined) {
-                switch (i) {
-                  case 0:
-                    if (this.oparr[index][i] && row[`${countryName}_Total`]) {
-                      if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_Total`], value))) {
-                        return false
-                      }
-                    }
-                    break
-                  case 1:
-                    if (this.oparr[index][i] && row[`${countryName}_fans_percent`]) {
-                      if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_fans_percent`], value))) {
-                        return false
-                      }
-                    }
-                    break
-                  case 2:
-                    if (this.oparr[index][i] && row[`${countryName}_people_talking`]) {
-                      if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_people_talking`], value))) {
-                        return false
-                      }
-                    }
-                    break
-                  case 3:
-                    if (this.oparr[index][i] && row[`${countryName}_talking_percent`]) {
-                      if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_talking_percent`], value))) {
-                        return false
-                      }
-                    }
-                    break
-                  default:
-                    break
-                }
-              }
-            }
-          }
-        }
-        if (this.arr.length) {
-          for (let index = 0; index < this.arr.length; index++) {
-            let nfilter = this.arr[index]
-            let countryName = nfilter[3]
-            let filterType = nfilter[2]
-            let operator = nfilter[1]
-            let value = nfilter[0]
-            if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
-              switch (filterType) {
-                case 'Likes':
-                  if (row[`${countryName}_Total`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                case 'Likes Percent':
-                  if (row[`${countryName}_fans_percent`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                case 'Talking About':
-                  if (row[`${countryName}_people_talking`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                case 'Talking About Percent':
-                  if (row[`${countryName}_talking_percent`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                default:
-                  break
-              }
-            }
-          }
-        }
+    //     const unComma = (commad) => {
+    //       // console.log(commad)
+    //       // console.log(typeof commad)
+    //       if (commad && typeof commad === 'string') {
+    //         commad = commad.replace(/,/g, '')
+    //         return parseInt(commad, 10)
+    //       }
+    //     }
+    //     // console.log('this.nbf')
+    //     // console.log(this.nbf)
+    //     if (this.nbf) {
+    //       for (var findex = 0; findex < 4; findex++) {
+    //         for (let index = 0; index < 45; index++) {
+    //           if (this[`v${index}_${findex}`] !== '' && this[`v${index}_${findex}`] !== null && this[`v${index}_${findex}`] !== undefined) {
+    //             if (this[`o${index}_${findex}`] && this[`c${index}_${findex}`] && this[`t${index}_${findex}`]) {
+    //               let countryName = this[`c${index}_${findex}`]
+    //               let filterType = this[`t${index}_${findex}`]
+    //               let operator = this[`o${index}_${findex}`]
+    //               let value = this[`v${index}_${findex}`]
+    //               switch (filterType) {
+    //                 case 'Likes':
+    //                   if (row[`${countryName}_Total`] !== null && row[`${countryName}_Total`] !== undefined /* && row[`${countryName}_Total`] !== '' */) {
+    //                     if (!(operatorFromString[operator](unComma(row[`${countryName}_Total`]), value))) {
+    //                       return false
+    //                     }
+    //                   }
+    //                   break
+    //                 case 'Likes Percent':
+    //                   if (row[`${countryName}_fans_percent`] !== null && row[`${countryName}_fans_percent`] !== undefined /* && row[`${countryName}_fans_percent`] !== '' */) {
+    //                     if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], (value / 100)))) {
+    //                       return false
+    //                     }
+    //                   }
+    //                   break
+    //                 case 'Talking About':
+    //                   if (row[`${countryName}_people_talking`] !== null && row[`${countryName}_people_talking`] !== undefined /* && row[`${countryName}_people_talking`] !== '' */) {
+    //                     if (!(operatorFromString[operator](unComma(row[`${countryName}_people_talking`]), value))) {
+    //                       return false
+    //                     }
+    //                   }
+    //                   break
+    //                 case 'Talking About Percent':
+    //                   if (row[`${countryName}_talking_percent`] !== null && row[`${countryName}_talking_percent`] !== undefined /* && row[`${countryName}_talking_percent`] !== '' */) {
+    //                     if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], (value / 100)))) {
+    //                       return false
+    //                     }
+    //                   }
+    //                   break
+    //                 default:
+    //                   break
+    //               }
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //     /*
+    //     if (this.qarr.length) {
+    //       for (let index = 0; index < this.qarr.length; index++) {
+    //         let countryFilter = this.qarr[index]
+    //         let countryName = countryFilter[4]
+    //         for (let i = 0; i < countryFilter.length - 1; i++) {
+    //           let value = countryFilter[i]
+    //           if (value !== null && value !== '' && value !== undefined) {
+    //             switch (i) {
+    //               case 0:
+    //                 if (this.oparr[index][i] && row[`${countryName}_Total`]) {
+    //                   if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_Total`], value))) {
+    //                     return false
+    //                   }
+    //                 }
+    //                 break
+    //               case 1:
+    //                 if (this.oparr[index][i] && row[`${countryName}_fans_percent`]) {
+    //                   if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_fans_percent`], value))) {
+    //                     return false
+    //                   }
+    //                 }
+    //                 break
+    //               case 2:
+    //                 if (this.oparr[index][i] && row[`${countryName}_people_talking`]) {
+    //                   if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_people_talking`], value))) {
+    //                     return false
+    //                   }
+    //                 }
+    //                 break
+    //               case 3:
+    //                 if (this.oparr[index][i] && row[`${countryName}_talking_percent`]) {
+    //                   if (!(operatorFromString[this.oparr[index][i]](row[`${countryName}_talking_percent`], value))) {
+    //                     return false
+    //                   }
+    //                 }
+    //                 break
+    //               default:
+    //                 break
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //     if (this.arr.length) {
+    //       for (let index = 0; index < this.arr.length; index++) {
+    //         let nfilter = this.arr[index]
+    //         let countryName = nfilter[3]
+    //         let filterType = nfilter[2]
+    //         let operator = nfilter[1]
+    //         let value = nfilter[0]
+    //         if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
+    //           switch (filterType) {
+    //             case 'Likes':
+    //               if (row[`${countryName}_Total`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             case 'Likes Percent':
+    //               if (row[`${countryName}_fans_percent`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             case 'Talking About':
+    //               if (row[`${countryName}_people_talking`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             case 'Talking About Percent':
+    //               if (row[`${countryName}_talking_percent`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             default:
+    //               break
+    //           }
+    //         }
+    //       }
+    //     }
 
-        if (this.nbf) {
-          for (let index = 0; index < this.nbf; index++) {
-            let countryName = this[`c${index}`]
-            let filterType = this[`f${index}`]
-            let operator = this[`o${index}`]
-            let value = this[`v${index}`]
-            if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
-              switch (filterType) {
-                case 'Likes':
-                  if (row[`${countryName}_Total`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                case 'Likes Percent':
-                  if (row[`${countryName}_fans_percent`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                case 'Talking About':
-                  if (row[`${countryName}_people_talking`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                case 'Talking About Percent':
-                  if (row[`${countryName}_talking_percent`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                default:
-                  break
-              }
-            }
-          }
-        }
+    //     if (this.nbf) {
+    //       for (let index = 0; index < this.nbf; index++) {
+    //         let countryName = this[`c${index}`]
+    //         let filterType = this[`f${index}`]
+    //         let operator = this[`o${index}`]
+    //         let value = this[`v${index}`]
+    //         if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
+    //           switch (filterType) {
+    //             case 'Likes':
+    //               if (row[`${countryName}_Total`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             case 'Likes Percent':
+    //               if (row[`${countryName}_fans_percent`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             case 'Talking About':
+    //               if (row[`${countryName}_people_talking`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             case 'Talking About Percent':
+    //               if (row[`${countryName}_talking_percent`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             default:
+    //               break
+    //           }
+    //         }
+    //       }
+    //     }
 
-        if (Object.keys(this.arr).length !== 0) {
-          for (let index = 0; index < Object.keys(this.arr).length; index++) {
-            let nfilter = this.arr[index]
-            let countryName = nfilter[3]
-            let filterType = nfilter[2]
-            let operator = nfilter[1]
-            let value = nfilter[0]
-            if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
-              switch (filterType) {
-                case 'Likes':
-                  if (row[`${countryName}_Total`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                case 'Likes Percent':
-                  if (row[`${countryName}_fans_percent`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                case 'Talking About':
-                  if (row[`${countryName}_people_talking`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                case 'Talking About Percent':
-                  if (row[`${countryName}_talking_percent`]) {
-                    if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
-                      return false
-                    }
-                  }
-                  break
-                default:
-                  break
-              }
-            }
-          }
-        }
-        */
-        if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4 || (this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) || this.q6) {
-          return (this.q1 ? operatorFromString[this.op1](unComma(row['fans_count']), this.q1) : true) &&
-          (this.q2 ? operatorFromString[this.op2](unComma(row['US_Total']), this.q2) : true) &&
-          (this.q6 ? operatorFromString[this.op6](unComma(row['US_people_talking']), this.q6) : true) &&
-          ((row['US percent'] !== null && row['US percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : ((row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US_fans_percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : (!((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0))))) &&
-          (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true) &&
-          ((this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) ? operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)) : true)
-        }
-        return true
-      })
-    }
+    //     if (Object.keys(this.arr).length !== 0) {
+    //       for (let index = 0; index < Object.keys(this.arr).length; index++) {
+    //         let nfilter = this.arr[index]
+    //         let countryName = nfilter[3]
+    //         let filterType = nfilter[2]
+    //         let operator = nfilter[1]
+    //         let value = nfilter[0]
+    //         if (countryName && filterType && operator && value !== null && value !== '' && value !== undefined) {
+    //           switch (filterType) {
+    //             case 'Likes':
+    //               if (row[`${countryName}_Total`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_Total`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             case 'Likes Percent':
+    //               if (row[`${countryName}_fans_percent`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_fans_percent`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             case 'Talking About':
+    //               if (row[`${countryName}_people_talking`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_people_talking`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             case 'Talking About Percent':
+    //               if (row[`${countryName}_talking_percent`]) {
+    //                 if (!(operatorFromString[operator](row[`${countryName}_talking_percent`], value))) {
+    //                   return false
+    //                 }
+    //               }
+    //               break
+    //             default:
+    //               break
+    //           }
+    //         }
+    //       }
+    //     }
+    //     */
+    //     if (this.q1 || this.q2 || (this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) || this.q4 || (this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) || this.q6) {
+    //       return (this.q1 ? operatorFromString[this.op1](unComma(row['fans_count']), this.q1) : true) &&
+    //       (this.q2 ? operatorFromString[this.op2](unComma(row['US_Total']), this.q2) : true) &&
+    //       (this.q6 ? operatorFromString[this.op6](unComma(row['US_people_talking']), this.q6) : true) &&
+    //       ((row['US percent'] !== null && row['US percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : ((row['US_fans_percent'] !== null && row['US_fans_percent'] !== undefined) ? ((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0) ? operatorFromString[this.op3](parseFloat(row['US_fans_percent'])/* .toString().replace('%', '').trim()) */, (this.q3 / 100)) : true) : (!((this.q3 !== null && this.q3 !== '' && this.q3 >= 0.0))))) &&
+    //       (this.q4 ? operatorFromString[this.op4](d.getTime(), qd.getTime()) : true) &&
+    //       ((this.q5 !== null && this.q5 !== '' && this.q5 >= 0.0) ? operatorFromString[this.op5](parseFloat(row['US_talking_percent'])/* .toString().replace('%', '').trim()) */, (this.q5 / 100)) : true)
+    //     }
+    //     return true
+    //   })
+    // }
   }
 })
 
@@ -1648,7 +1650,7 @@ const v2 = new Vue({
       // console.log(document.getElementById('token').value);
       // this.$http.get('http://localhost:5000/search?token=' + document.getElementById('token').value + '&search_term=' + document.getElementById('search').value).then((dataSample) => {
       this.$http.post('http://localhost:5000/search', {token: document.getElementById('token').value, search_term: document.getElementById('search').value, countries: this.countryVals}).then((dataSample, status, request) => {
-        console.log(dataSample.body)
+        // console.log(dataSample.body)
         let body = JSON.parse(dataSample.body)
         let rows = []
         let rows2 = []

@@ -3,7 +3,7 @@
     <!-- <img src="./assets/fb-art.png">
     <br> -->
     <!-- w3-collapse -->
-    <nav class="w3-sidebar  w3-light-grey w3-animate-left" style="z-index:3;width:300px;height:auto;max-height:95%;overflow:hidden;position: absolute !important;" id="mySidebar">
+    <nav class="w3-sidebar  w3-light-grey w3-animate-left" style="z-index:3;width:300px;height:auto;max-height:95%;overflow:scroll;position: absolute !important;" id="mySidebar">
       <div style="height:100%" id="fltrprnt">
         <!-- v-on:click="tggleacc" -->
         <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" >Advanced Filters</button>
@@ -203,14 +203,14 @@ export default {
       let csvRows = this.$parent.customFilter.map((row) => {
         for (var key in row) {
           if (row.hasOwnProperty(key)) {
-            var col = row[key];
+            var col = row[key]
             if (typeof col === 'string') {
               if (col.indexOf('<img src ="') > -1 || col.indexOf('<a href ="') > -1) {
-                console.log('col.match(/"([^"]+)"/)[1]')
-                console.log(col.match(/"([^"]+)"/)[1])
+                // console.log('col.match(/"([^"]+)"/)[1]')
+                // console.log(col.match(/"([^"]+)"/)[1])
                 row[key] = col.match(/"([^"]+)"/)[1]
               }
-            } 
+            }
           }
         }
         return row
@@ -219,8 +219,8 @@ export default {
         if (err) {
           console.log(err)
         } else {
-          console.log('converted:: ')
-          console.log(converted)
+          // console.log('converted:: ')
+          // console.log(converted)
           let csvContent = 'data:text/csv;charset=utf-8,'
           csvContent += converted
           // converted.forEach(function(rowArray){
@@ -237,7 +237,8 @@ export default {
         }
       }, {
         delimiter: {
-          field: '|'
+          field: ';',
+          array: ','
         }
       })
     },
@@ -382,7 +383,7 @@ export default {
       this.$parent.$set(this.$parent.arr[this.$parent.nbf], 0, ev.target.value)
     },
     addFilter: function () {
-      var Vue = require('vue');
+      var Vue = require('vue')
       const filterCountry = document.getElementById('dc-filters').options[document.getElementById('dc-filters').selectedIndex].value
       const filterType = document.getElementById('dc-filter-type').options[document.getElementById('dc-filter-type').selectedIndex].value
       const si = document.getElementById('dc-filters').selectedIndex
@@ -405,7 +406,7 @@ export default {
       // this.$parent[`c${this.$parent.nbf}`] = filterCountry
 
       this.$parent[`v${si}_${sc}`] = ''
-      this.$parent[`o${si}_${sc}`] = ''
+      this.$parent[`o${si}_${sc}`] = '>'
       this.$parent[`t${si}_${sc}`] = filterType
       this.$parent[`c${si}_${sc}`] = filterCountry
       let lbl = document.createElement('LABEL')
