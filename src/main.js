@@ -1642,6 +1642,11 @@ const v2 = new Vue({
   },
   methods: {
     search: function () {
+      let loading = document.getElementById('search-btn')
+      loading.setAttribute('class', 'btn w3-dark-grey ')
+      loading.setAttribute('disabled', 'disabled')
+      // loading.setAttribute('style', 'padding: 12px 16px;')
+      loading.innerHTML = 'Loading &nbsp;&nbsp;<i class="fa fa-refresh fa-spin"></i>'
       this.countryVals = []
       document.querySelectorAll('input[type=checkbox]:checked').forEach((box) => {
         this.countryVals.push(box.value)
@@ -1731,7 +1736,12 @@ const v2 = new Vue({
         v1.columns = columns
         // v1.flag = true
         // console.log(DT)
-        setTimeout(() => { document.getElementById('app').scrollIntoView() }, 400)
+        setTimeout(() => {
+          document.getElementById('app').scrollIntoView()
+          loading.setAttribute('class', 'btn w3-dark-grey ')
+          loading.removeAttribute('disabled')
+          loading.innerHTML = 'Search'
+        }, 400)
       }).catch((err) => {
         console.log(err)
       })
