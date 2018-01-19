@@ -1655,6 +1655,8 @@ const v2 = new Vue({
         let rows = []
         let rows2 = []
         let columns = []
+        let nameTmp = []
+        let linkTmp = []
         for (var colName in body) {
           if (body.hasOwnProperty(colName)) {
             if (colName === 'picture') {
@@ -1668,9 +1670,9 @@ const v2 = new Vue({
             } else if (colName === 'last_post_date') {
               columns.push({label: 'Last Post Date', field: colName, /* filterable: true, */ type: 'date', inputFormat: 'YYYY-MM-DD', outputFormat: 'MMM Do YY'})
             } else if (colName === 'id') {
-              columns.push({label: 'Page Link', field: colName, html: true})
+              // columns.push({label: 'Page Link', field: colName, html: true})
             } else if (colName === 'name') {
-              columns.push({label: 'Page Name', field: colName, filterable: true})
+              columns.push({label: 'Page Name', field: colName, html: true, filterable: true})
             } else if (colName.toLowerCase().indexOf('percent') > -1) {
               columns.push({label: colName, field: colName, /* filterable: true, */ type: 'percentage'})
             } else {
@@ -1696,7 +1698,21 @@ const v2 = new Vue({
                 if (colName === 'picture') {
                   rows[id][colName] = '<img src ="' + val + '" />'
                 } else if (colName === 'id') {
-                  rows[id][colName] = '<a href ="' + val + '" />' + val
+                  console.log('in link')
+                  linkTmp.push(val)
+                  console.log(linkTmp[id])
+                  if (nameTmp[id]) {
+                    rows[id]['name'] = '<a href ="' + linkTmp[id] + '" >' + nameTmp[id] + '</a>'
+                    console.log('done: ' + rows[id]['name'])
+                  }
+                } else if (colName === 'name') {
+                  console.log('in name')
+                  nameTmp.push(val)
+                  console.log(nameTmp[id])
+                  if (linkTmp[id]) {
+                    rows[id]['name'] = '<a href ="' + linkTmp[id] + '" >' + nameTmp[id] + '</a>'
+                    console.log('done: ' + rows[id]['name'])
+                  }
                 } else if (colName.toLowerCase().indexOf('percent') > -1) {
                   rows[id][colName] = val / 100
                 } else if (colName.toLowerCase().indexOf('total') > -1 || colName.toLowerCase().indexOf('count') > -1) {

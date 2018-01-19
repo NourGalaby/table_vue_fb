@@ -195,23 +195,29 @@ export default {
     },
     csv: function () {
       const converter = require('json-2-csv')
+      const cloneDeep = require('lodash.clonedeep')
       // console.log(this)
       // console.log(this.$children)
       // console.log(this.$parent.customFilter)
       // this.$parent.rows2 = this.$parent.csvFilter()
       // let csvRows = this.$parent.csvFilter()
-      let csvRows = this.$parent.customFilter.map((row) => {
+      let csvRows = this.$parent.customFilter.map((xrow) => {
+        let row = cloneDeep(xrow)
         for (var key in row) {
           if (row.hasOwnProperty(key)) {
             var col = row[key]
             if (typeof col === 'string') {
-              if (col.indexOf('<img src ="') > -1 || col.indexOf('<a href ="') > -1) {
+              if (col.indexOf('<img src ="') > -1) {
                 // console.log('col.match(/"([^"]+)"/)[1]')
                 // console.log(col.match(/"([^"]+)"/)[1])
                 row[key] = col.match(/"([^"]+)"/)[1]
+              } else if (col.indexOf('<a href ="') > -1) {
+                row.id = col.match(/"([^"]+)"/)[1]
+                row.name = col.match(/>([^<]+)</)[1]
               }
+            } else {
+              row[key] = `"${col}"`
             }
-            row[key] = `"${col}"`
           }
         }
         return row
@@ -405,7 +411,6 @@ export default {
       // this.$parent[`f${this.$parent.nbf}`] = filterType
       // this.$parent[`c${this.$parent.nbf}`] = filterCountry
 
-      
       // let lbl = document.createElement('LABEL')
       // let slct = document.createElement('SELECT')
       // let inpt = document.createElement('INPUT')
@@ -443,7 +448,7 @@ export default {
       // console.log(this.$parent.c0)
       // console.log(this.x.c0)
       // console.log(v1)
-      
+
       // let x = this.$parent
       // with(this){return _c('div',[_c('label',{attrs:{"for":"noperator1"}},[_v("AE Likes")]),_c('select',{directives:[{name:"model",rawName:"v-model"}],staticClass:"form-control",attrs:{"name":"noperator1"},on:{"change":function($event){var $$selectedVal = Array.prototype.filter.call($event.target.options,function(o){return o.selected}).map(function(o){var val = "_value" in o ? o._value : o.value;return val}); =$event.target.multiple ? $$selectedVal : $$selectedVal[0]}}},[_c('option',{attrs:{"value":">"}},[_v("greater than")]),_c('option',{attrs:{"value":"<"}},[_v("less than")]),_c('option',{attrs:{"value":"="}},[_v("equal to")])]),_c('input',{directives:[{name:"model",rawName:"v-model",value:($parent.v0),expression:"$parent.v0"}],staticClass:"form-control",attrs:{"type":"text","placeholder":"A positive number"},domProps:{"value":($parent.v0)},on:{"input":function($event){if($event.target.composing)return;$set($parent, "v0", $event.target.value)}}})])}
       // let res = Vue.default.compile(`<div><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><select v-model="$parent['o${si}']" class="form-control" name="noperator${this.$parent.nbf}"><option value=">">greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="text"  v-model="$parent['v${si}']" class="form-control" placeholder="A positive number"></div>`)
@@ -470,7 +475,6 @@ export default {
         document.getElementsByName(`noperator${this.$parent.nbf}`)[0].value = '>'
         this.$parent.nbf++
       }
-
     }
   }
 }
