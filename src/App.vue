@@ -214,6 +214,8 @@ export default {
               } else if (col.indexOf('<a href ="') > -1) {
                 row.id = col.match(/"([^"]+)"/)[1]
                 row.name = col.match(/>([^<]+)</)[1]
+              } else {
+                row[key] = `"${col}"`
               }
             } else {
               row[key] = `"${col}"`

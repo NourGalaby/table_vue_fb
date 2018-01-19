@@ -1703,20 +1703,20 @@ const v2 = new Vue({
                 if (colName === 'picture') {
                   rows[id][colName] = '<img src ="' + val + '" />'
                 } else if (colName === 'id') {
-                  console.log('in link')
+                  // console.log('in link')
                   linkTmp.push(val)
-                  console.log(linkTmp[id])
+                  // console.log(linkTmp[id])
                   if (nameTmp[id]) {
                     rows[id]['name'] = '<a href ="' + linkTmp[id] + '" >' + nameTmp[id] + '</a>'
-                    console.log('done: ' + rows[id]['name'])
+                    // console.log('done: ' + rows[id]['name'])
                   }
                 } else if (colName === 'name') {
-                  console.log('in name')
+                  // console.log('in name')
                   nameTmp.push(val)
-                  console.log(nameTmp[id])
+                  // console.log(nameTmp[id])
                   if (linkTmp[id]) {
                     rows[id]['name'] = '<a href ="' + linkTmp[id] + '" >' + nameTmp[id] + '</a>'
-                    console.log('done: ' + rows[id]['name'])
+                    // console.log('done: ' + rows[id]['name'])
                   }
                 } else if (colName.toLowerCase().indexOf('percent') > -1) {
                   rows[id][colName] = val / 100
