@@ -1,174 +1,150 @@
 <template>
-  <div id="app">
-    <!-- <img src="./assets/fb-art.png">
-    <br> -->
-    <!-- w3-collapse -->
-    <nav class="w3-sidebar  w3-light-grey w3-animate-left" style="z-index:3;width:300px;height:auto;max-height:95%;overflow:scroll;position: absolute !important;" id="mySidebar">
-      <div style="height:100%" id="fltrprnt">
-        <!-- v-on:click="tggleacc" -->
-        <button class="accordion2 w3-bar-item w3-button w3-padding w3-dark-grey" >Advanced Filters</button>
-        <!-- style="height:350px;margin:auto;" -->
-        <div class="panel w3-light-grey" id="fltrdiv">
-          <div class="filterbar bg-light" id="filter1">
-            <!-- <label for="">Filter by : </label> -->
-            <!-- <select v-model="$parent.f"> -->
-              <label for="operator1">Fans Count</label>
-              <!-- <option value="fans_count">Fans Count</option> -->
-              <!-- <option value="US_Total">US Total Fans</option> -->
-            
-            <!-- </select> -->
-            <form class="form-inline" > <div style="float:none;margin: 0 auto;">
-            <select v-model="$parent.op1" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" style="font-size:10px;" name="operator1">
-              <option value=">">greater than</option>
-              <option value="<">less than</option>
-              <option value="=">equal to</option>
-            </select>
-            <input type="number" v-model="$parent.q1" class="form-control mb-1 mr-sm-1 mb-sm-1 " style="font-size:10px;" placeholder="A positive number">
-            </div>
-            </form>
-          </div>
-          <div class="filterbar bg-light" id="filter4">
+<div class="row search_c" id="app" style="background:linear-gradient(#07192f,#07192f)">
 
-            <label for="operator4">Last Post Date</label>
-            <form class="form-inline" > <div style="float:none;margin: 0 auto;">
-            <select v-model="$parent.op4" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" name="operator4" style="font-size:10px;">
-              <option value=">">greater than</option>
-              <option value="<">less than</option>
-              <option value="=">equal to</option>
-            </select>
-            <input type="date" v-model="$parent.q4" class="form-control mb-1 mr-sm-1 mb-sm-1" placeholder="Date" style="font-size:10px;">
-            </div>
-            </form>
-          </div>
-          <!-- <div class="filterbar w3-light-grey" id="filter2">
-            <label for="operator2">US Total Fans</label>
-            <select v-model="$parent.op2" class="form-control" name="operator2">
-              <option value=">">greater than</option>
-              <option value="<">less than</option>
-              <option value="=">equal to</option>
-            </select>
-            <input type="number" v-model="$parent.q2" class="form-control" placeholder="A positive number">
-          </div>
-          <div class="filterbar w3-light-grey" id="filter3">
-            <label for="operator3">US Likes Percent</label>
-            <select v-model="$parent.op3" class="form-control" name="operator3">
-              <option value=">">greater than</option>
-              <option value="<">less than</option>
-              <option value="=">equal to</option>
-            </select>
-            <input type="text" v-model="$parent.q3" class="form-control" placeholder="e.g. 50.5">
-          </div>
-          
-          <div class="filterbar w3-light-grey" id="filter6">
-            <label for="operator6">US Talking About</label>
-            <select v-model="$parent.op6" class="form-control" name="operator6">
-              <option value=">">greater than</option>
-              <option value="<">less than</option>
-              <option value="=">equal to</option>
-            </select>
-            <input type="text" v-model="$parent.q6" class="form-control" placeholder="A positive number">
-          </div>
-          <div class="filterbar w3-light-grey" id="filter5">
-            <label for="operator5">US Talking About Percent</label>
-            <select v-model="$parent.op5" class="form-control" name="operator5">
-              <option value=">">greater than</option>
-              <option value="<">less than</option>
-              <option value="=">equal to</option>
-            </select>
-            <input type="text" v-model="$parent.q5" class="form-control" placeholder="e.g. 50.5">
-          </div> -->
-          <div id="add-filter" class="bg-secondary" style="margin-top:2px;" >
-            
-            <label for="operator4">Custom filter</label>
-            <form class="form-inline" > <div style="float:none;margin: 0 auto;">
-            <select  class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" name="countries" id="dc-filters" style="font-size:10px;">
-              <option value="AE">AE</option> 
-              <option value="AR">AR</option>
-              <option value="AU">AU</option>
-              <option value="BD">BD</option>
-              <option value="BE">BE</option>
-              <option value="BR">BR</option>
-              <option value="CA">CA</option>
-              <option value="CL">CL</option>
-              <option value="CO">CO</option>
-              <option value="DE">DE</option>
-              <option value="DZ">DZ</option>
-              <option value="EC">EC</option>
-              <option value="EG">EG</option>
-              <option value="ES">ES</option>
-              <option value="FR">FR</option>
-              <option value="GB">GB</option>
-              <option value="HK">HK</option>
-              <option value="ID">ID</option>
-              <option value="IN">IN</option>
-              <option value="IQ">IQ</option>
-              <option value="IR">IR</option>
-              <option value="IT">IT</option>
-              <option value="JP">JP</option>
-              <option value="KH">KH</option>
-              <option value="KR">KR</option>
-              <option value="LK">LK</option>
-              <option value="MA">MA</option>
-              <option value="MM">MM</option>
-              <option value="MX">MX</option>
-              <option value="MY">MY</option>
-              <option value="PE">PE</option>
-              <option value="PH">PH</option>
-              <option value="PK">PK</option>
-              <option value="PL">PL</option>
-              <option value="RO">RO</option>
-              <option value="SA">SA</option>
-              <option value="SG">SG</option>
-              <option value="SY">SY</option>
-              <option value="TH">TH</option>
-              <option value="TN">TN</option>
-              <option value="TR">TR</option>
-              <option value="TW">TW</option>
-              <option value="US" selected>US</option>
-              <option value="VE">VE</option>
-              <option value="VN">VN</option>
-            </select>
-            <select class="form-control mb-1 mr-sm-1 mb-sm-1 " name="type" id="dc-filter-type" style="font-size:10px;">
-              <option value="Likes">Likes</option> 
-              <option value="Likes Percent">Likes Percent</option>
-              <option value="Talking About">Talking About</option>
-              <option value="Talking About Percent">Talking About Percent</option>
-            </select>
-            
-            </div>
-            
-            </form>
-            <button v-on:click="addFilter" class="btn w3-dark-grey mb-sm-1  " style="font-size:10px;">Add Filter</button>
-          </div>
-          <div id="added-filters0"></div>
-          
-          <div class="btn-right">
-            <button  id="csv-btn" class="btn w3-dark-grey" v-on:click="csv">Save as CSV</button>
-          </div>
-        </div>
-        
-      </div>
-    </nav>
-    <!-- <router-view/> -->
-    <!-- <dts v-if="$parent.flag" :flag='$parent.flag' :prows='$parent.rows' :pcolumns='$parent.columns'></dts> -->
-    <!-- <b-alert show variant="primary">Primary Alert</b-alert> -->
-    <!-- styleClass="edited-table" -->
-    <!-- responsive=false -->
-    
-<div class="sub-body w3-main" style="margin-left:300px;margin-top:43px;padding-left:20px;">
-  
-    <div v-if="$parent.flag" class="w3-light-grey" >
-      <vue-good-table
-        title=""
-        styleClass="table table-bordered w3-light-grey"
-        
-        :columns="$parent.columns"
-        :rows="$parent.customFilter"
-        :paginate="true"
-        :lineNumbers="true"/>
-    </div>
-    </div>
-  </div>
+	<div id="mySidenav" class="sidenav">
+	  <div class="panel panel-success" style="margin:0;width:250px;">
+		  <div data-toggle="collapse~" data-target="#filter_c" class="panel-heading text-left" style="color:#fff;background-color:#07192f;">
+			Advanced Filters
+			<span class="sidenav_close pull-right glyphicon glyphicon-remove-sign" onclick="closeNav()"></span>	
+		  </div>
+		  <div id="filter_c" class="collapse in panel-body">
+			<div class="filterbar bg-light~" id="filter1">
+				<label style="margin-bottom: .2rem;" for="operator1">Fans Count</label>
+				<form class="form-inline" > 
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<select v-model="$parent.op1" class="form-control" style="width:100%;font-size:12px;" name="operator1">
+								<option value=">">greater than</option>
+								<option value="<">less than</option>
+								<option value="=">equal to</option>
+							</select>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<input type="number" v-model="$parent.q1" class="form-control" style="width:100%;font-size:12px;" placeholder="A positive number">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="clearfix" style="clear:both;"></div>
+			<div class="filterbar bg-light~" id="filter4">
+				<label style="margin-top: .9rem;margin-bottom: .2rem;" for="operator4">Last Post Date</label>
+				<form class="form-inline" > 
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<select v-model="$parent.op4" class="form-control" style="width:100%;font-size:12px;" name="operator4">
+								<option value=">">greater than</option>
+								<option value="<">less than</option>
+								<option value="=">equal to</option>
+							</select>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<input type="date" v-model="$parent.q4" class="form-control" style="width:100%;font-size:12px;padding-left:5px;" placeholder="Date">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="clearfix" style="clear:both;"></div>
+			<div id="add-filter" style="margin-top:2px;" >
+				<label for="operator4">Custom filter</label>
+				<form class="form-inline" > 
+					<div class="row">
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<select  class="form-control" style="width:100%;font-size:12px;" name="countries" id="dc-filters">
+								<option value="AE">AE</option> 
+								<option value="AR">AR</option>
+								<option value="AU">AU</option>
+								<option value="BD">BD</option>
+								<option value="BE">BE</option>
+								<option value="BR">BR</option>
+								<option value="CA">CA</option>
+								<option value="CL">CL</option>
+								<option value="CO">CO</option>
+								<option value="DE">DE</option>
+								<option value="DZ">DZ</option>
+								<option value="EC">EC</option>
+								<option value="EG">EG</option>
+								<option value="ES">ES</option>
+								<option value="FR">FR</option>
+								<option value="GB">GB</option>
+								<option value="HK">HK</option>
+								<option value="ID">ID</option>
+								<option value="IN">IN</option>
+								<option value="IQ">IQ</option>
+								<option value="IR">IR</option>
+								<option value="IT">IT</option>
+								<option value="JP">JP</option>
+								<option value="KH">KH</option>
+								<option value="KR">KR</option>
+								<option value="LK">LK</option>
+								<option value="MA">MA</option>
+								<option value="MM">MM</option>
+								<option value="MX">MX</option>
+								<option value="MY">MY</option>
+								<option value="PE">PE</option>
+								<option value="PH">PH</option>
+								<option value="PK">PK</option>
+								<option value="PL">PL</option>
+								<option value="RO">RO</option>
+								<option value="SA">SA</option>
+								<option value="SG">SG</option>
+								<option value="SY">SY</option>
+								<option value="TH">TH</option>
+								<option value="TN">TN</option>
+								<option value="TR">TR</option>
+								<option value="TW">TW</option>
+								<option value="US" selected>US</option>
+								<option value="VE">VE</option>
+								<option value="VN">VN</option>
+							</select>
+						</div>
+						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+							<select class="form-control" style="width:100%;font-size:12px;" name="type" id="dc-filter-type">
+								<option value="Likes">Likes</option> 
+								<option value="Likes Percent">Likes Percent</option>
+								<option value="Talking About">Talking About</option>
+								<option value="Talking About Percent">Talking About Percent</option>
+							</select>
+						</div>
+					</div>
+				</form>
+				<div class="clearfix" style="clear:both;"><br/></div>
+				<button v-on:click="addFilter" class="btn btn-block" style="font-size:10px;">Add Filter</button>
+			</div>
+			<div id="added-filters0"></div>
+		  </div>
+		  <div class="panel-footer">
+			<button class="btn btn-info btn-block" id="csv-btn" v-on:click="csv">Save as CSV</button>
+		  </div>
+		</div>
+		  
+	</div>
+
+	<div class="clearfix" style="clear:both;"></div>
+	<div class="container" style="margin: auto auto 20px;border-radius: 4px;padding-top: 20px;max-width: 95%;margin-top: -48px;">
+		<div class="row" style="position:relative;">
+			<div class="filter" onclick="openNav();">
+				<span class="glyphicon glyphicon-filter"></span>
+			</div>
+			
+			<div id="result_cont" style="transition: all 1s ease-in-out;" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<div v-if="$parent.flag" class="result_table rounded" style="position:relative;" >
+				  <vue-good-table
+					title=""
+					styleClass="table table-striped table-hover table-condensed w3-light-grey~"       
+					:columns="$parent.columns"
+					:rows="$parent.customFilter"
+					:paginate="true"
+					:globalSearch="true"
+					:lineNumbers="false">
+					</vue-good-table>
+				</div>			
+			</div>
+		</div>
+	</div>
+	
+	<div class="clearfix" style="clear:both;"></div>
+</div>
+	
 </template>
 
 <script>
@@ -463,7 +439,8 @@ export default {
 
         var self = this
 
-        let res = Vue.default.compile(`<div><div class="bg-light" ><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><form class="form-inline" > <div style="float:none;margin: 0 auto;"><select v-model="parent2.$parent['o${si}_${sc}']" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" style="font-size:10px;" name="noperator${this.$parent.nbf}"><option  value=">" >greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="number" v-model="parent2.$parent['v${si}_${sc}']" style="font-size:10px;" class="form-control mb-1 mr-sm-1 mb-sm-1 " placeholder="A positive number"></div></form></div><div id="added-filters${this.$parent.nbf + 1}" ></div></div>`)
+        /* let res = Vue.default.compile(`<div><div class="bg-light" ><label for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><form class="form-inline" > <div style="float:none;margin: 0 auto;"><select v-model="parent2.$parent['o${si}_${sc}']" class="form-control mb-1 mr-sm-1 mb-sm-1 ml-sm-1" style="font-size:10px;" name="noperator${this.$parent.nbf}"><option  value=">" >greater than</option><option value="<">less than</option><option value="=">equal to</option></select><input type="number" v-model="parent2.$parent['v${si}_${sc}']" style="font-size:10px;" class="form-control mb-1 mr-sm-1 mb-sm-1 " placeholder="A positive number"></div></form></div><div id="added-filters${this.$parent.nbf + 1}" ></div></div>`) */
+		let res = Vue.default.compile(`<div><div class="bg-light"><label style="margin-top: .9rem;margin-bottom: .2rem;" for="noperator${this.$parent.nbf}">${filterCountry} ${filterType}</label><form class="form-inline" ><div class="row"><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><select v-model="parent2.$parent['o${si}_${sc}']" class="form-control" style="width:100%;font-size:12px;padding-left:5px;" name="noperator${this.$parent.nbf}"><option  value=">" >greater than</option><option value="<">less than</option><option value="=">equal to</option></select></div><div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"><input type="number" v-model="parent2.$parent['v${si}_${sc}']" class="form-control" style="width:100%;font-size:12px;padding-left:5px;" placeholder="A positive number"></div></div></form></div><div id="added-filters${this.$parent.nbf + 1}" ></div></div>`)
         new Vue.default({
           el: `#added-filters${this.$parent.nbf}`,
           data: {
@@ -481,176 +458,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 10px;
-  }
-  .table {
-    /* margin: auto;
-    width: 75%; */
-    font-size: small;
-    overflow: hidden;
-    /* table-layout: fixed; */
-    /* width: 200px; */
-  }
-  /* .table * {
-    overflow: hidden;
-  } */
-  .table th {
-    font-size: small;
-    text-align: center;
-  }
-  .row{
-    font-size: small;
-  }
-  .edited-table {
-    overflow: hidden;
-  }
-  /* Style the buttons that are used to open and close the accordion panel */
-  .accordion2 {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    /* margin: auto; */
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-  }
-
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .accordion2:hover {
-    background-color: #ccc;
-  }
-
-  /* Style the accordion panel. Note: hidden by default */
-  .panel {
-    padding: 0 6px;
-    background-color: #ddd;
-    display: block;
-    height: 90%;
-    overflow-y: scroll;
-    /* margin: auto;
-    width: 75%; */
-  }
-  /* #cntrydiv {
-    padding: 0 6px;
-    display: none;
-    padding: 1%;
-    height: 80%;
-    overflow-y: scroll;
-  } */
-  .filterbar {
-    overflow: hidden;
-    background-color: #e9e9e9;
-    
-  }
-  .filterbar input, .filterbar select, .filterbar label {
-    
-    padding: 2px;
-    border: none;
-    margin-top: 1px;
-    margin-bottom: 1px;
-    /* margin-left: 5px; */
-    padding: 4px 5px;
-    
-    font-size: smaller;
-  }
-  .filterbar label {
-    width: 100%;
-    margin-top: 5px;
-  }
-  .btn-right {
-    float: right;
-    padding: 6px;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    /* display: inline-block; */
-  }
-  /* nav {
-    height: 40%;
-  } */
-  /* Base for label styling */
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
-  position: absolute;
-  left: -9999px;
-}
-[type="checkbox"]:not(:checked) + label,
-[type="checkbox"]:checked + label {
-  position: relative;
-  padding-left: 1.30em;
-  padding-right: 1.0em;
-  cursor: pointer;
-  font-size: smaller;
-}
-
-/* checkbox aspect */
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0;
-  width: 1.25em; height: 1.25em;
-  border: 2px solid #ccc;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
-}
-/* checked mark aspect */
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
-  content: '✔';
-  position: absolute;
-  top: .1em; left: .15em;
-  font-size: 1.4em;
-  line-height: 0.8;
-  color: #09ad7e;
-  transition: all .2s;
-  font-family: Helvetica, Arial, sans-serif;
-}
-/* checked mark aspect changes */
-[type="checkbox"]:not(:checked) + label:after {
-  opacity: 0;
-  transform: scale(0);
-}
-[type="checkbox"]:checked + label:after {
-  opacity: 1;
-  transform: scale(1);
-}
-/* disabled checkbox */
-[type="checkbox"]:disabled:not(:checked) + label:before,
-[type="checkbox"]:disabled:checked + label:before {
-  box-shadow: none;
-  border-color: #bbb;
-  background-color: #ddd;
-}
-[type="checkbox"]:disabled:checked + label:after {
-  color: #999;
-}
-[type="checkbox"]:disabled + label {
-  color: #aaa;
-}
-/* accessibility */
-[type="checkbox"]:checked:focus + label:before,
-[type="checkbox"]:not(:checked):focus + label:before {
-  border: 2px dotted blue;
-}
-
-/* hover style just for information */
-label:hover:before {
-  border: 2px solid #4778d9!important;
-}
-.w3-dark-grey {
-  color: #fff!important;
-  background-color: #009688!important;
-}
-</style>

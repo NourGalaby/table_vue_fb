@@ -1643,7 +1643,7 @@ const v2 = new Vue({
   methods: {
     search: function () {
       let loading = document.getElementById('search-btn')
-      loading.setAttribute('class', 'btn w3-dark-grey ')
+      loading.setAttribute('class', 'btn btn-link btn-lg dsiabled')
       loading.setAttribute('disabled', 'disabled')
       // loading.setAttribute('style', 'padding: 12px 16px;')
       loading.innerHTML = 'Loading &nbsp;&nbsp;<i class="fa fa-refresh fa-spin"></i>'
@@ -1707,7 +1707,7 @@ const v2 = new Vue({
                   linkTmp.push(val)
                   // console.log(linkTmp[id])
                   if (nameTmp[id]) {
-                    rows[id]['name'] = '<a href ="' + linkTmp[id] + '" >' + nameTmp[id] + '</a>'
+                    rows[id]['name'] = '<a class="page_name" href ="' + linkTmp[id] + '" >' + nameTmp[id] + '</a>'
                     // console.log('done: ' + rows[id]['name'])
                   }
                 } else if (colName === 'name') {
@@ -1738,7 +1738,7 @@ const v2 = new Vue({
         // console.log(DT)
         setTimeout(() => {
           document.getElementById('app').scrollIntoView()
-          loading.setAttribute('class', 'btn w3-dark-grey ')
+          loading.setAttribute('class', 'btn btn-default btn-lg btn-block')
           loading.removeAttribute('disabled')
           loading.innerHTML = 'Search'
         }, 400)
