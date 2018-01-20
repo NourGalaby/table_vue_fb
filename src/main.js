@@ -1748,7 +1748,18 @@ const v2 = new Vue({
     },
     enter: function (ev) {
       // ev.preventDefault()
-      if (ev.keyCode === 13) { this.search() }
+      let countryVals = []
+      document.querySelectorAll('input[type=checkbox]:checked').forEach(function (box) {
+        countryVals.push(box.value)
+      }, this)
+      if (document.getElementById('token').value && document.getElementById('search').value && countryVals.length) {
+        document.getElementById('search-btn').removeAttribute('disabled')
+        if (ev.keyCode === 13) {
+          this.search()
+        }
+      } else {
+        document.getElementById('search-btn').setAttribute('disabled', 'disabled')
+      }
     },
     postCountries: function () {
       this.countryVals = document.querySelectorAll('input[type=checkbox]:checked').map(box => box.value)

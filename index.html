@@ -129,14 +129,14 @@
         <div class="w3-row-padding" style="margin:0 -16px; height: 91vh;">
           <div class="topnav w3-light-grey" id="nav">
             <div>
-              <input placeholder="Search" type="text" id="search" v-on:keypress="enter" >
+              <input placeholder="Search" type="text" id="search" v-on:keyup="enter" >
               <!-- <div style="float: right;margin:0px;padding:0px;display:block;width:31%;"> -->
                   <!-- data-toggle="modal" data-target="#cntrydiv" -->
                 <!-- <button class="btn btn-info w3-dark-grey" style="width: 25%;float:left;word-wrap: break-word;" id="modalbtn" onclick="show()">Country list</button> -->
                 <!-- <button v-on:click="search" id="search-btn" class="btn w3-dark-grey" style="width: 73%;float: right;">Search</button> -->
               <!-- </div> -->
             </div>
-            <div ><input placeholder="Token" type="text" id="token" v-on:keypress="enter" ></div>
+            <div ><input placeholder="Token" type="text" id="token" v-on:keyup="enter" ></div>
             <div><strong>Select Countries</strong></div>
             <div>
               <input type="checkbox" name="AEch" id="AEch" value="AE" onclick="postCountries()"><label for="AEch">AE</label>
@@ -186,7 +186,7 @@
               <input type="checkbox" name="VNch" id="VNch" value="VN" onclick="postCountries()"><label for="VNch">VN</label>
             </div>
             <div>
-              <button v-on:click="search" id="search-btn" class="btn w3-dark-grey" style="width: 50%;">Search</button>
+              <button v-on:click="search" id="search-btn" class="btn w3-dark-grey" disabled style="width: 50%;">Search</button>
             </div>
           </div>
           <button class="accordion w3-bar-item w3-button w3-padding w3-dark-grey">Where to get a token ?</button>
@@ -314,7 +314,7 @@ var span = document.getElementsByClassName("close")[0];
       // }
       // http.send(countryVals);
       // this.$http.post('http://localhost:5000/countries', {countries: countryVals}).then((data, status, request) => {}).catch((error) => { console.log(error) })
-      if (countryVals.length) {
+      if (document.getElementById('token').value && document.getElementById('search').value && countryVals.length) {
         document.getElementById('search-btn').removeAttribute('disabled');
         // alert('countryVals.length: ' + countryVals.length);
       } else {
