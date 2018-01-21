@@ -169,7 +169,7 @@
       // }
       // http.send(countryVals);
       // this.$http.post('http://localhost:5000/countries', {countries: countryVals}).then((data, status, request) => {}).catch((error) => { console.log(error) })
-      if (document.getElementById('token').value && document.getElementById('search').value && countryVals.length) {
+      if (/* document.getElementById('token').value && */ document.getElementById('search').value && countryVals.length) {
         document.getElementById('search-btn').removeAttribute('disabled');
         // alert('countryVals.length: ' + countryVals.length);
       } else {
